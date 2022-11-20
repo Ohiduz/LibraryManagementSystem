@@ -7,6 +7,7 @@ package com.mycompany.librarymanagementsystem;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 /**
  *
@@ -16,65 +17,60 @@ public class LibraryManagementSystem {
 
     public static void main(String[] args) {
         Connection con;
+        
         try{
             con = DBConnection.getConnection();
-            String del = "drop table students;";
-            PreparedStatement ds = con.prepareStatement(del);
-            int c = ds.executeUpdate();
-        }
-        catch(Exception e){
-            System.out.println("");
-        }
-        try{
-            con = DBConnection.getConnection();
-            String del = "drop table books;";
-            PreparedStatement ds = con.prepareStatement(del);
-            int c = ds.executeUpdate();
-        }
-        catch(Exception e){
-            System.out.println("");
-        }
-        try{
-            con = DBConnection.getConnection();
-            String del = "drop table issueBooks;"; 
-            PreparedStatement ds = con.prepareStatement(del);
-            int c = ds.executeUpdate();
-        }
-        catch(Exception e){
-            System.out.println("");
-        }
-        try{
-            con = DBConnection.getConnection();
-            String sq = "create table students (studentId varchar(20) not null primary key, "
+            String p = "SELECT * FROM information_schema.tables WHERE table_schema = ? AND table_name = ? LIMIT 1;";
+            PreparedStatement qw = con.prepareStatement(p);
+            qw.setString(1, "lms");
+            qw.setString(2, "students");
+            ResultSet r = qw.executeQuery();
+            if(!r.next()){
+               String sq = "create table students (studentId varchar(20) not null primary key, "
                     + "studentName varchar(50) not null, "
                     + "email varchar(50) not null, "
                     + "password varchar(50) not null, booksBorrowed int default 0);";
-            PreparedStatement pst = con.prepareStatement(sq);
-            int tablescount = pst.executeUpdate();
+                PreparedStatement pst = con.prepareStatement(sq);
+                pst.executeUpdate(); 
+            }
         }
         catch(Exception e){
             System.out.println(e);
         }
         try{
             con = DBConnection.getConnection();
-            String sq = "create table books (bookId varchar(10) not null primary key, "
+            String p = "SELECT * FROM information_schema.tables WHERE table_schema = ? AND table_name = ? LIMIT 1;";
+            PreparedStatement qw = con.prepareStatement(p);
+            qw.setString(1, "lms");
+            qw.setString(2, "books");
+            ResultSet r = qw.executeQuery();
+            if(!r.next()){
+                String sq = "create table books (bookId varchar(10) not null primary key, "
                     + "bookName varchar(50) not null, "
                     + "quantity int);";
-            PreparedStatement pst = con.prepareStatement(sq);
-            int tablescount = pst.executeUpdate();
+                PreparedStatement pst = con.prepareStatement(sq);
+                pst.executeUpdate();
+            }  
         }
         catch(Exception e){
             System.out.println(e);
         }
         try{
             con = DBConnection.getConnection();
-            String sq = "create table issueBooks (issueId int not null auto_increment primary key, "
+            String p = "SELECT * FROM information_schema.tables WHERE table_schema = ? AND table_name = ? LIMIT 1;";
+            PreparedStatement qw = con.prepareStatement(p);
+            qw.setString(1, "lms");
+            qw.setString(2, "books");
+            ResultSet r = qw.executeQuery();
+            if(!r.next()){
+                String sq = "create table issueBooks (issueId int not null auto_increment primary key, "
                     + "studentId varchar(10) not null, "
                     + "bookId varchar(10) not null, "
                     + "fromdt DATE, "
                     + "todt DATE, Status varchar(10));";
-            PreparedStatement pst = con.prepareStatement(sq);
-            int tablescount = pst.executeUpdate();
+                PreparedStatement pst = con.prepareStatement(sq);
+                pst.executeUpdate();
+            }
         }
         catch(Exception e){
             System.out.println(e);

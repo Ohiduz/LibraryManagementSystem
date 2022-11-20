@@ -4,6 +4,8 @@
  */
 package com.mycompany.librarymanagementsystem;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author ohidu
@@ -31,10 +33,10 @@ public class AdminLogin extends javax.swing.JFrame {
         btn_back = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        txt_id = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jPasswordField1 = new javax.swing.JPasswordField();
-        jButton1 = new javax.swing.JButton();
+        txt_password = new javax.swing.JPasswordField();
+        btn_login = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -71,21 +73,26 @@ public class AdminLogin extends javax.swing.JFrame {
         jLabel3.setText("Enter ID: ");
         jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(93, 82, -1, -1));
 
-        jTextField2.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        jPanel2.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(93, 110, 384, -1));
+        txt_id.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jPanel2.add(txt_id, new org.netbeans.lib.awtextra.AbsoluteConstraints(93, 110, 384, -1));
 
         jLabel2.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jLabel2.setText("Enter password:");
         jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(93, 164, -1, -1));
 
-        jPasswordField1.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        jPanel2.add(jPasswordField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(93, 204, 384, -1));
+        txt_password.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jPanel2.add(txt_password, new org.netbeans.lib.awtextra.AbsoluteConstraints(93, 204, 384, -1));
 
-        jButton1.setBackground(new java.awt.Color(0, 102, 102));
-        jButton1.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Login");
-        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(327, 316, -1, -1));
+        btn_login.setBackground(new java.awt.Color(0, 102, 102));
+        btn_login.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
+        btn_login.setForeground(new java.awt.Color(255, 255, 255));
+        btn_login.setText("Login");
+        btn_login.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_loginMouseClicked(evt);
+            }
+        });
+        jPanel2.add(btn_login, new org.netbeans.lib.awtextra.AbsoluteConstraints(327, 316, -1, -1));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 149, 735, 515));
 
@@ -102,6 +109,31 @@ public class AdminLogin extends javax.swing.JFrame {
         sp.setVisible(true);
         dispose();
     }//GEN-LAST:event_btn_backMouseClicked
+    private boolean validateLogin(){
+        String id = txt_id.getText();
+        String password = txt_password.getText();
+        if(id.equals("")){
+            JOptionPane.showMessageDialog(this, "Please enter ID!");
+            return false;
+        }
+        if(password.equals("")){
+            JOptionPane.showMessageDialog(this, "Please enter password!");
+            return false;
+        }
+        if(!id.equals("Admin1") || !password.equals("passforlms")){
+            JOptionPane.showMessageDialog(this, "Invalid id or password!");
+            return false;
+        }
+        return true;
+    }
+    private void btn_loginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_loginMouseClicked
+        // TODO add your handling code here:
+        if(validateLogin()){
+            AdminHomepage ah = new AdminHomepage();
+            ah.setVisible(true);
+            dispose();
+        }
+    }//GEN-LAST:event_btn_loginMouseClicked
 
     /**
      * @param args the command line arguments
@@ -140,13 +172,13 @@ public class AdminLogin extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_back;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btn_login;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField txt_id;
+    private javax.swing.JPasswordField txt_password;
     // End of variables declaration//GEN-END:variables
 }
