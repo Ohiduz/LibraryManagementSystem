@@ -71,8 +71,8 @@ public class LibraryManagementSystem {
             String sq = "create table issueBooks (issueId int not null auto_increment primary key, "
                     + "studentId varchar(10) not null, "
                     + "bookId varchar(10) not null, "
-                    + "from Date, "
-                    + "to Date, Status varchar(10);";
+                    + "fromdt DATE, "
+                    + "todt DATE, Status varchar(10));";
             PreparedStatement pst = con.prepareStatement(sq);
             int tablescount = pst.executeUpdate();
         }
