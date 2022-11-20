@@ -33,10 +33,10 @@ public class StudentHomepage extends javax.swing.JFrame {
         jButton6 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        btn_logout = new javax.swing.JButton();
+        btn_reqReissue = new javax.swing.JButton();
+        btn_returnBook = new javax.swing.JButton();
+        btn_reqIssue = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -85,49 +85,69 @@ public class StudentHomepage extends javax.swing.JFrame {
 
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton1.setBackground(new java.awt.Color(0, 102, 102));
-        jButton1.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Logout");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+        btn_logout.setBackground(new java.awt.Color(0, 102, 102));
+        btn_logout.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
+        btn_logout.setForeground(new java.awt.Color(255, 255, 255));
+        btn_logout.setText("Logout");
+        btn_logout.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_logoutMouseClicked(evt);
             }
         });
-        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 380, -1, -1));
+        btn_logout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_logoutActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btn_logout, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 380, -1, -1));
 
-        jButton2.setBackground(new java.awt.Color(0, 102, 102));
-        jButton2.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("Request for reissuing a book");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+        btn_reqReissue.setBackground(new java.awt.Color(0, 102, 102));
+        btn_reqReissue.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        btn_reqReissue.setForeground(new java.awt.Color(255, 255, 255));
+        btn_reqReissue.setText("Request for reissuing a book");
+        btn_reqReissue.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_reqReissueMouseClicked(evt);
             }
         });
-        jPanel2.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(122, 230, 500, 74));
+        btn_reqReissue.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_reqReissueActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btn_reqReissue, new org.netbeans.lib.awtextra.AbsoluteConstraints(122, 230, 500, 74));
 
-        jButton4.setBackground(new java.awt.Color(0, 102, 102));
-        jButton4.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
-        jButton4.setForeground(new java.awt.Color(255, 255, 255));
-        jButton4.setText("Return a book");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+        btn_returnBook.setBackground(new java.awt.Color(0, 102, 102));
+        btn_returnBook.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        btn_returnBook.setForeground(new java.awt.Color(255, 255, 255));
+        btn_returnBook.setText("Return a book");
+        btn_returnBook.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_returnBookMouseClicked(evt);
             }
         });
-        jPanel2.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(122, 150, 500, 74));
+        btn_returnBook.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_returnBookActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btn_returnBook, new org.netbeans.lib.awtextra.AbsoluteConstraints(122, 150, 500, 74));
 
-        jButton5.setBackground(new java.awt.Color(0, 102, 102));
-        jButton5.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
-        jButton5.setForeground(new java.awt.Color(255, 255, 255));
-        jButton5.setText("Request for issuing a book");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+        btn_reqIssue.setBackground(new java.awt.Color(0, 102, 102));
+        btn_reqIssue.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        btn_reqIssue.setForeground(new java.awt.Color(255, 255, 255));
+        btn_reqIssue.setText("Request for issuing a book");
+        btn_reqIssue.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_reqIssueMouseClicked(evt);
             }
         });
-        jPanel2.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(122, 70, 500, 74));
+        btn_reqIssue.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_reqIssueActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btn_reqIssue, new org.netbeans.lib.awtextra.AbsoluteConstraints(122, 70, 500, 74));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 149, 735, 515));
 
@@ -138,25 +158,53 @@ public class StudentHomepage extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btn_logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_logoutActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btn_logoutActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btn_reqReissueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_reqReissueActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btn_reqReissueActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void btn_returnBookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_returnBookActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_btn_returnBookActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    private void btn_reqIssueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_reqIssueActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton5ActionPerformed
+    }//GEN-LAST:event_btn_reqIssueActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void btn_reqIssueMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_reqIssueMouseClicked
+        // TODO add your handling code here:
+        RequestIssue ri = new RequestIssue();
+        ri.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btn_reqIssueMouseClicked
+
+    private void btn_returnBookMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_returnBookMouseClicked
+        // TODO add your handling code here:
+        ReturnBook rb = new ReturnBook();
+        rb.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btn_returnBookMouseClicked
+
+    private void btn_reqReissueMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_reqReissueMouseClicked
+        // TODO add your handling code here:
+        ReissueBook rib = new ReissueBook();
+        rib.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btn_reqReissueMouseClicked
+
+    private void btn_logoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_logoutMouseClicked
+        // TODO add your handling code here:
+        StartPage sp = new StartPage();
+        sp.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btn_logoutMouseClicked
 
     /**
      * @param args the command line arguments
@@ -194,11 +242,11 @@ public class StudentHomepage extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton btn_logout;
+    private javax.swing.JButton btn_reqIssue;
+    private javax.swing.JButton btn_reqReissue;
+    private javax.swing.JButton btn_returnBook;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

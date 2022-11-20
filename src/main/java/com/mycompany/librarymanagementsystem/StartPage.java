@@ -29,19 +29,18 @@ public class StartPage extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btn_admin = new javax.swing.JButton();
+        btn_student = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
-        jButton3 = new javax.swing.JButton();
+        btn_submit = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(80, 80, 80));
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        setPreferredSize(new java.awt.Dimension(750, 670));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -57,27 +56,37 @@ public class StartPage extends javax.swing.JFrame {
 
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton1.setBackground(new java.awt.Color(0, 102, 102));
-        jButton1.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Admin");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+        btn_admin.setBackground(new java.awt.Color(0, 102, 102));
+        btn_admin.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        btn_admin.setForeground(new java.awt.Color(255, 255, 255));
+        btn_admin.setText("Admin");
+        btn_admin.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_adminMouseClicked(evt);
             }
         });
-        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, 192, 74));
+        btn_admin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_adminActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btn_admin, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, 192, 74));
 
-        jButton2.setBackground(new java.awt.Color(0, 102, 102));
-        jButton2.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("Student");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+        btn_student.setBackground(new java.awt.Color(0, 102, 102));
+        btn_student.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        btn_student.setForeground(new java.awt.Color(255, 255, 255));
+        btn_student.setText("Student");
+        btn_student.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_studentMouseClicked(evt);
             }
         });
-        jPanel2.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, 192, 74));
+        btn_student.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_studentActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btn_student, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, 192, 74));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel2.setText("OR");
@@ -99,22 +108,36 @@ public class StartPage extends javax.swing.JFrame {
         jTextField1.setText("E.g., D://proj4/testcase.txt");
         jPanel3.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(146, 50, 460, -1));
 
-        jButton3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jButton3.setText("Submit");
-        jPanel3.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 108, -1, -1));
+        btn_submit.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btn_submit.setText("Submit");
+        jPanel3.add(btn_submit, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 108, -1, -1));
 
         getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 431, 759, 233));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btn_adminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_adminActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btn_adminActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btn_studentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_studentActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btn_studentActionPerformed
+
+    private void btn_studentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_studentMouseClicked
+        // TODO add your handling code here:
+        StudentLogin sl = new StudentLogin();
+        sl.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btn_studentMouseClicked
+
+    private void btn_adminMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_adminMouseClicked
+        // TODO add your handling code here:
+        AdminLogin al = new AdminLogin();
+        al.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btn_adminMouseClicked
 
     /**
      * @param args the command line arguments
@@ -152,9 +175,9 @@ public class StartPage extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton btn_admin;
+    private javax.swing.JButton btn_student;
+    private javax.swing.JButton btn_submit;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

@@ -15,7 +15,7 @@ import java.sql.PreparedStatement;
 public class LibraryManagementSystem {
 
     public static void main(String[] args) {
-        RemoveStudent sp = new RemoveStudent();
+        StartPage sp = new StartPage();
         sp.setVisible(true);
     }
 }
