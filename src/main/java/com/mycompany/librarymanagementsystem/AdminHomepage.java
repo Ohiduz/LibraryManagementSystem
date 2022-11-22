@@ -4,6 +4,10 @@
  */
 package com.mycompany.librarymanagementsystem;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
 /**
  *
  * @author ohidu
@@ -14,7 +18,30 @@ public class AdminHomepage extends javax.swing.JFrame {
      * Creates new form AdminHomepage
      */
     public AdminHomepage() {
+        
         initComponents();
+        lbl_books.setText("");
+        lbl_studs.setText("");
+        try{
+            Connection con = DBConnection.getConnection();
+            String sq = "select count(1) as rws from books;";
+            PreparedStatement cb = con.prepareStatement(sq);
+            ResultSet rscb = cb.executeQuery();
+            rscb.next();
+            int bookRows = rscb.getInt("rws");
+            lbl_books.setText(Integer.toString(bookRows));
+            
+            String sq2 = "select count(1) as rws from students;";
+            PreparedStatement cs = con.prepareStatement(sq2);
+            ResultSet rscs = cs.executeQuery();
+            rscs.next();
+            int studRows = rscs.getInt("rws");
+            lbl_studs.setText(Integer.toString(studRows));
+            
+        }
+        catch(Exception e){
+            System.out.println(e);
+        }
     }
 
     /**
@@ -28,9 +55,9 @@ public class AdminHomepage extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jButton3 = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
+        lbl_studs = new javax.swing.JLabel();
         jButton6 = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
+        lbl_books = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         btn_logout = new javax.swing.JButton();
         btn_removeStudent = new javax.swing.JButton();
@@ -55,10 +82,10 @@ public class AdminHomepage extends javax.swing.JFrame {
         });
         jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 30, -1, -1));
 
-        jLabel2.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel2.setText("70");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 70, 80, -1));
+        lbl_studs.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
+        lbl_studs.setForeground(new java.awt.Color(51, 51, 51));
+        lbl_studs.setText("70");
+        jPanel1.add(lbl_studs, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 70, 80, -1));
 
         jButton6.setBackground(new java.awt.Color(0, 102, 102));
         jButton6.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
@@ -71,10 +98,10 @@ public class AdminHomepage extends javax.swing.JFrame {
         });
         jPanel1.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 30, -1, -1));
 
-        jLabel3.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel3.setText("2");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 70, 80, -1));
+        lbl_books.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
+        lbl_books.setForeground(new java.awt.Color(51, 51, 51));
+        lbl_books.setText("2");
+        jPanel1.add(lbl_books, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 70, 80, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 6, 735, 131));
 
@@ -271,9 +298,9 @@ public class AdminHomepage extends javax.swing.JFrame {
     private javax.swing.JButton btn_removeStudent;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton6;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JLabel lbl_books;
+    private javax.swing.JLabel lbl_studs;
     // End of variables declaration//GEN-END:variables
 }

@@ -4,6 +4,11 @@
  */
 package com.mycompany.librarymanagementsystem;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author ohidu
@@ -29,12 +34,12 @@ public class RemoveBook extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         btn_back = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        txt_bookId = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
+        txt_bookName = new javax.swing.JTextField();
         btn_removeAll = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
+        txt_quantity = new javax.swing.JTextField();
         btn_remove = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -63,20 +68,25 @@ public class RemoveBook extends javax.swing.JFrame {
         jLabel5.setText("Enter Book Id: ");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 50, -1, -1));
 
-        jTextField3.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        jPanel1.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 50, 387, -1));
+        txt_bookId.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jPanel1.add(txt_bookId, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 50, 387, -1));
 
         jLabel6.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jLabel6.setText("Enter Book Name: ");
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 110, -1, -1));
 
-        jTextField4.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        jPanel1.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 110, 387, -1));
+        txt_bookName.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jPanel1.add(txt_bookName, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 110, 387, -1));
 
         btn_removeAll.setBackground(new java.awt.Color(0, 102, 102));
         btn_removeAll.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         btn_removeAll.setForeground(new java.awt.Color(255, 255, 255));
         btn_removeAll.setText("Remove All Copies");
+        btn_removeAll.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_removeAllMouseClicked(evt);
+            }
+        });
         btn_removeAll.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_removeAllActionPerformed(evt);
@@ -88,13 +98,18 @@ public class RemoveBook extends javax.swing.JFrame {
         jLabel7.setText("Enter quantity: ");
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 210, -1, -1));
 
-        jTextField5.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        jPanel1.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 210, 387, -1));
+        txt_quantity.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jPanel1.add(txt_quantity, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 210, 387, -1));
 
         btn_remove.setBackground(new java.awt.Color(0, 102, 102));
         btn_remove.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         btn_remove.setForeground(new java.awt.Color(255, 255, 255));
         btn_remove.setText("Remove");
+        btn_remove.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_removeMouseClicked(evt);
+            }
+        });
         btn_remove.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_removeActionPerformed(evt);
@@ -125,6 +140,151 @@ public class RemoveBook extends javax.swing.JFrame {
         ah.setVisible(true);
         dispose();
     }//GEN-LAST:event_btn_backMouseClicked
+
+    private void btn_removeAllMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_removeAllMouseClicked
+        // TODO add your handling code here:
+        String bookId = txt_bookId.getText();
+        String bookName = txt_bookName.getText();
+        if(bookId.equals("") && bookName.equals("")){
+            JOptionPane.showMessageDialog(this, "Please enter book id or name!");
+            return;
+        }
+        Connection con = DBConnection.getConnection();
+        if(!bookId.equals("")){
+            try{
+                String sq = "delete from books where bookId = ?;";
+                PreparedStatement rmb = con.prepareStatement(sq);
+                rmb.setString(1, bookId);
+                int del = rmb.executeUpdate();
+                if(del>0){
+                    JOptionPane.showMessageDialog(this, "The book has been removed!");
+                    return;
+                }
+                else{
+                    JOptionPane.showMessageDialog(this, "The book could not be removed or "
+                            + "it doesn't exist!");
+                    return;
+                }
+            }
+            catch(Exception e){
+                System.out.println(e);
+                return;
+            }       
+        }
+        if(!bookName.equals("")){
+            try{
+                String sq = "delete from books where bookName = ?;";
+                PreparedStatement rmb = con.prepareStatement(sq);
+                rmb.setString(1, bookName);
+                int del = rmb.executeUpdate();
+                if(del>0){
+                    JOptionPane.showMessageDialog(this, "The book has been removed!");
+                    return;
+                }
+                else{
+                    JOptionPane.showMessageDialog(this, "The book could not be removed or "
+                            + "it doesn't exist!");
+                    return;
+                }
+            }
+            catch(Exception e){
+                System.out.println(e);
+                return;
+            }
+        }
+    }//GEN-LAST:event_btn_removeAllMouseClicked
+
+    private void btn_removeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_removeMouseClicked
+        // TODO add your handling code here:
+        String bookId = txt_bookId.getText();
+        String bookName = txt_bookName.getText();
+        if(bookId.equals("") && bookName.equals("")){
+            JOptionPane.showMessageDialog(this, "Please enter book id or name!");
+            return;
+        }
+        if(txt_quantity.getText().equals("")){
+            JOptionPane.showMessageDialog(this, "Please enter quantity to remove!");
+            return;
+        }
+        int quantity = Integer.parseInt(txt_quantity.getText());
+        Connection con = DBConnection.getConnection();
+        if(!bookId.equals("")){
+            try{
+                String sqgtb = "select * from books where bookId = ?;";
+                PreparedStatement gtb = con.prepareStatement(sqgtb); 
+                gtb.setString(1, bookId);
+                ResultSet theB = gtb.executeQuery();
+                if(theB.next()){
+                    int curr_quan = theB.getInt("quantity");
+                    int remaining = curr_quan - quantity;
+                    if(remaining<0){
+                        JOptionPane.showMessageDialog(this, "There are only "+curr_quan+" copies of this book!");
+                        return;
+                    }
+                    else{
+                        String squq = "update books set quantity = ? where bookId = ?;";
+                        PreparedStatement uq = con.prepareStatement(squq);
+                        uq.setInt(1, remaining);
+                        uq.setString(2, bookId);
+                        int udqd = uq.executeUpdate();
+                        if(udqd>0){
+                            JOptionPane.showMessageDialog(this, "Removed "+quantity
+                                    +" copies of this book successfully!");
+                            return;
+                        }
+                        else{
+                            JOptionPane.showMessageDialog(this, "The book could not be removed!");
+                        }
+                    }
+                }
+                else{
+                    JOptionPane.showMessageDialog(this, "This book doesn't exist!");
+                    return;
+                }
+            }
+            catch(Exception e){
+                System.out.println(e);
+            }
+        }
+        if(!bookName.equals("")){
+            try{
+                String sqgtb = "select * from books where bookName = ?;";
+                PreparedStatement gtb = con.prepareStatement(sqgtb); 
+                gtb.setString(1, bookName);
+                ResultSet theB = gtb.executeQuery();
+                if(theB.next()){
+                    int curr_quan = theB.getInt("quantity");
+                    int remaining = curr_quan - quantity;
+                    if(remaining<0){
+                        JOptionPane.showMessageDialog(this, "There are only "+curr_quan+" copies of this book!");
+                        return;
+                    }
+                    else{
+                        String squq = "update books set quantity = ? where bookName = ?;";
+                        PreparedStatement uq = con.prepareStatement(squq);
+                        uq.setInt(1, remaining);
+                        uq.setString(2, bookName);
+                        int udqd = uq.executeUpdate();
+                        if(udqd>0){
+                            JOptionPane.showMessageDialog(this, "Removed "+quantity
+                                    +" copies of this book successfully!");
+                            return;
+                        }
+                        else{
+                            JOptionPane.showMessageDialog(this, "The book could not be removed!");
+                        }
+                    }
+                }
+                else{
+                    JOptionPane.showMessageDialog(this, "This book doesn't exist!");
+                    return;
+                }
+            }
+            catch(Exception e){
+                System.out.println(e);
+            }
+        }
+    }//GEN-LAST:event_btn_removeMouseClicked
 
     /**
      * @param args the command line arguments
@@ -169,8 +329,8 @@ public class RemoveBook extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
+    private javax.swing.JTextField txt_bookId;
+    private javax.swing.JTextField txt_bookName;
+    private javax.swing.JTextField txt_quantity;
     // End of variables declaration//GEN-END:variables
 }

@@ -4,6 +4,11 @@
  */
 package com.mycompany.librarymanagementsystem;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author ohidu
@@ -29,13 +34,13 @@ public class AddStudent extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         btn_back = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        txt_sName = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        txt_sId = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
+        txt_sEmail = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        txt_sPassword = new javax.swing.JPasswordField();
         btn_addStudent = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -64,34 +69,39 @@ public class AddStudent extends javax.swing.JFrame {
         jLabel5.setText("Enter Student's Name: ");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 60, -1, -1));
 
-        jTextField3.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        jPanel1.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 90, 387, -1));
+        txt_sName.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jPanel1.add(txt_sName, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 90, 387, -1));
 
         jLabel3.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jLabel3.setText("Enter Student's BITS ID: ");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 130, -1, -1));
 
-        jTextField2.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 160, 387, -1));
+        txt_sId.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jPanel1.add(txt_sId, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 160, 387, -1));
 
         jLabel6.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jLabel6.setText("Enter Student's BITS email: ");
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 210, -1, -1));
 
-        jTextField4.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        jPanel1.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 240, 387, -1));
+        txt_sEmail.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jPanel1.add(txt_sEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 240, 387, -1));
 
         jLabel2.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jLabel2.setText("Enter Student's password:");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 290, -1, -1));
 
-        jPasswordField1.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        jPanel1.add(jPasswordField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 320, 387, -1));
+        txt_sPassword.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jPanel1.add(txt_sPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 320, 387, -1));
 
         btn_addStudent.setBackground(new java.awt.Color(0, 102, 102));
         btn_addStudent.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         btn_addStudent.setForeground(new java.awt.Color(255, 255, 255));
         btn_addStudent.setText("Add Student");
+        btn_addStudent.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_addStudentMouseClicked(evt);
+            }
+        });
         btn_addStudent.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_addStudentActionPerformed(evt);
@@ -118,6 +128,86 @@ public class AddStudent extends javax.swing.JFrame {
         ah.setVisible(true);
         dispose();
     }//GEN-LAST:event_btn_backMouseClicked
+    private boolean validateSignup(Student s){
+        String name = s.getName();
+        String id = s.getId();
+        String email = s.getEmail();
+        String password = s.getPassword();
+        if(name.equals("")){
+            JOptionPane.showMessageDialog(this, "Please enter student's name!");
+            return false;
+        }
+        if(id.equals("")){
+            JOptionPane.showMessageDialog(this, "Please enter student's ID!");
+            return false;
+        }
+        
+        try{
+            Connection con = DBConnection.getConnection();
+            String x ="select * from students where studentId = ?;";
+            PreparedStatement pst = con.prepareStatement(x);
+            pst.setString(1, id);
+            ResultSet rs = pst.executeQuery();
+            if(rs.next()){
+                JOptionPane.showMessageDialog(this, "This student is already registered!");
+                return false;
+            }
+        }
+        catch(Exception e){
+            System.out.println(e);
+        }
+        if(email.equals("") || !email.matches("^.+@.+\\..+$")){
+            JOptionPane.showMessageDialog(this, "Please enter student's valid email!");
+            return false;
+        }
+        if(password.equals("")){
+            JOptionPane.showMessageDialog(this, "Please enter a password!");
+            return false;
+        }
+        return true;
+    }
+    private void insertSignupDetails(Student s){
+        String name = s.getName();
+        String id = s.getId();
+        String email = s.getEmail();
+        String password = s.getPassword();
+        try{
+            Connection con = DBConnection.getConnection();
+            String x ="insert into students (studentId, studentName, email, password)"
+                    + " values(?,?,?,?);";
+            PreparedStatement pst = con.prepareStatement(x);
+            pst.setString(1, id);
+            pst.setString(2, name);
+            pst.setString(3, email);
+            pst.setString(4, password);
+            int rws = pst.executeUpdate();
+            if(rws>0){
+                JOptionPane.showMessageDialog(this, "The student has been added successfully!");
+            }
+            else{
+                JOptionPane.showMessageDialog(this, "Registration failed!");
+            }
+        }
+        catch(Exception e){
+            System.out.println(e);
+        }
+        
+        
+    }
+    private synchronized void  validateAndInsert(Student s){
+        if(validateSignup(s)){
+            insertSignupDetails(s);
+        }
+    }
+    private void btn_addStudentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_addStudentMouseClicked
+        // TODO add your handling code here:
+        String name = txt_sName.getText();
+        String id = txt_sId.getText();
+        String email = txt_sEmail.getText();
+        String password = txt_sPassword.getText();
+        Student s = new Student(id, name, email, password);
+        validateAndInsert(s);
+    }//GEN-LAST:event_btn_addStudentMouseClicked
 
     /**
      * @param args the command line arguments
@@ -162,9 +252,9 @@ public class AddStudent extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
+    private javax.swing.JTextField txt_sEmail;
+    private javax.swing.JTextField txt_sId;
+    private javax.swing.JTextField txt_sName;
+    private javax.swing.JPasswordField txt_sPassword;
     // End of variables declaration//GEN-END:variables
 }
