@@ -9,11 +9,15 @@ package com.mycompany.librarymanagementsystem;
  * @author ohidu
  */
 public class ReturnBook extends javax.swing.JFrame {
-
+    String studId;
     /**
      * Creates new form ReturnBook
      */
     public ReturnBook() {
+        initComponents();
+    }
+    public ReturnBook(String studId) {
+        this.studId = studId;
         initComponents();
     }
 
@@ -147,14 +151,14 @@ public class ReturnBook extends javax.swing.JFrame {
 
     private void btn_backMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_backMouseClicked
         // TODO add your handling code here:
-        StudentHomepage sh = new StudentHomepage();
+        StudentHomepage sh = new StudentHomepage(studId);
         sh.setVisible(true);
         dispose();
     }//GEN-LAST:event_btn_backMouseClicked
 
     private void btn_returnHomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_returnHomeMouseClicked
         // TODO add your handling code here:
-        StudentHomepage sh = new StudentHomepage();
+        StudentHomepage sh = new StudentHomepage(studId);
         sh.setVisible(true);
         dispose();
     }//GEN-LAST:event_btn_returnHomeMouseClicked

@@ -4,19 +4,31 @@
  */
 package com.mycompany.librarymanagementsystem;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author ohidu
  */
 public class StudentHomepage extends javax.swing.JFrame {
-
+    String studId;
     /**
      * Creates new form StudentHomepage
      */
     public StudentHomepage() {
         initComponents();
+        showBooks();
+        showDues();
     }
-
+    public StudentHomepage(String studId){
+        this.studId = studId;
+        initComponents();
+        showBooks();
+        showDues();
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -28,10 +40,10 @@ public class StudentHomepage extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jButton3 = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
+        yd = new javax.swing.JButton();
+        lbl_yd = new javax.swing.JLabel();
         jButton6 = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
+        lbl_bwy = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         btn_logout = new javax.swing.JButton();
         btn_reqReissue = new javax.swing.JButton();
@@ -49,21 +61,21 @@ public class StudentHomepage extends javax.swing.JFrame {
         jLabel1.setText("Welcome Jack!");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 0, 320, 85));
 
-        jButton3.setBackground(new java.awt.Color(0, 102, 102));
-        jButton3.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(255, 255, 255));
-        jButton3.setText("Your dues:");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        yd.setBackground(new java.awt.Color(0, 102, 102));
+        yd.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
+        yd.setForeground(new java.awt.Color(255, 255, 255));
+        yd.setText("Your dues:");
+        yd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                ydActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 50, -1, -1));
+        jPanel1.add(yd, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 50, -1, -1));
 
-        jLabel2.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel2.setText("0.00");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 90, 130, -1));
+        lbl_yd.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
+        lbl_yd.setForeground(new java.awt.Color(51, 51, 51));
+        lbl_yd.setText("0.00");
+        jPanel1.add(lbl_yd, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 90, 130, -1));
 
         jButton6.setBackground(new java.awt.Color(0, 102, 102));
         jButton6.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
@@ -76,10 +88,10 @@ public class StudentHomepage extends javax.swing.JFrame {
         });
         jPanel1.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, -1, -1));
 
-        jLabel3.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel3.setText("2");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 80, -1));
+        lbl_bwy.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
+        lbl_bwy.setForeground(new java.awt.Color(51, 51, 51));
+        lbl_bwy.setText("2");
+        jPanel1.add(lbl_bwy, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 80, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 6, 735, 131));
 
@@ -153,10 +165,43 @@ public class StudentHomepage extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void showBooks(){
+        lbl_bwy.setText("");
+        try{
+            Connection con = DBConnection.getConnection();
+            String sq = "select * from students where studentId = ?;";
+            PreparedStatement ps = con.prepareStatement(sq);
+            ps.setString(1, studId);
+            ResultSet rs = ps.executeQuery();
+            if(rs.next()){
+                int books = rs.getInt("booksBorrowed");
+                lbl_bwy.setText(Integer.toString(books));
+            }
+        }
+        catch(Exception e){
+            System.out.println(e);
+        }
+    }
+    private void showDues(){
+        lbl_yd.setText("");
+        try{
+            Connection con = DBConnection.getConnection();
+            String sq = "select * from students where studentId = ?;";
+            PreparedStatement ps = con.prepareStatement(sq);
+            ps.setString(1, studId);
+            ResultSet rs = ps.executeQuery();
+            if(rs.next()){
+                double dues = rs.getDouble("charges");
+                lbl_yd.setText(Double.toString(dues));
+            }
+        }
+        catch(Exception e){
+            System.out.println(e);
+        }
+    }
+    private void ydActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ydActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_ydActionPerformed
 
     private void btn_logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_logoutActionPerformed
         // TODO add your handling code here:
@@ -180,21 +225,72 @@ public class StudentHomepage extends javax.swing.JFrame {
 
     private void btn_reqIssueMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_reqIssueMouseClicked
         // TODO add your handling code here:
-        RequestIssue ri = new RequestIssue();
+        try{
+            Connection con = DBConnection.getConnection();
+            String sq = "select * from students where studentId = ?;";
+            PreparedStatement ps = con.prepareStatement(sq);
+            ps.setString(1, studId);
+            ResultSet rs = ps.executeQuery();
+            if(rs.next()){
+                int books = rs.getInt("booksBorrowed");
+                if(books>=3){
+                    JOptionPane.showMessageDialog(this, "You already borrowed 3 books!");
+                    return;
+                }
+            }
+        }
+        catch(Exception e){
+            System.out.println(e);
+        }
+        RequestIssue ri = new RequestIssue(studId);
         ri.setVisible(true);
         dispose();
     }//GEN-LAST:event_btn_reqIssueMouseClicked
 
     private void btn_returnBookMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_returnBookMouseClicked
         // TODO add your handling code here:
-        ReturnBook rb = new ReturnBook();
+        try{
+            Connection con = DBConnection.getConnection();
+            String sq = "select * from students where studentId = ?;";
+            PreparedStatement ps = con.prepareStatement(sq);
+            ps.setString(1, studId);
+            ResultSet rs = ps.executeQuery();
+            if(rs.next()){
+                int books = rs.getInt("booksBorrowed");
+                if(books<=0){
+                    JOptionPane.showMessageDialog(this, "You haven't borrowed any books!");
+                    return;
+                }
+            }
+        }
+        catch(Exception e){
+            System.out.println(e);
+        }
+        ReturnBook rb = new ReturnBook(studId);
         rb.setVisible(true);
         dispose();
     }//GEN-LAST:event_btn_returnBookMouseClicked
 
     private void btn_reqReissueMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_reqReissueMouseClicked
         // TODO add your handling code here:
-        ReissueBook rib = new ReissueBook();
+        try{
+            Connection con = DBConnection.getConnection();
+            String sq = "select * from students where studentId = ?;";
+            PreparedStatement ps = con.prepareStatement(sq);
+            ps.setString(1, studId);
+            ResultSet rs = ps.executeQuery();
+            if(rs.next()){
+                int books = rs.getInt("booksBorrowed");
+                if(books<=0){
+                    JOptionPane.showMessageDialog(this, "You haven't borrowed any books!");
+                    return;
+                }
+            }
+        }
+        catch(Exception e){
+            System.out.println(e);
+        }
+        ReissueBook rib = new ReissueBook(studId);
         rib.setVisible(true);
         dispose();
     }//GEN-LAST:event_btn_reqReissueMouseClicked
@@ -246,12 +342,12 @@ public class StudentHomepage extends javax.swing.JFrame {
     private javax.swing.JButton btn_reqIssue;
     private javax.swing.JButton btn_reqReissue;
     private javax.swing.JButton btn_returnBook;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JLabel lbl_bwy;
+    private javax.swing.JLabel lbl_yd;
+    private javax.swing.JButton yd;
     // End of variables declaration//GEN-END:variables
 }

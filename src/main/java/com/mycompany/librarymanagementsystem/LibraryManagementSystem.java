@@ -29,7 +29,9 @@ public class LibraryManagementSystem {
                String sq = "create table students (studentId varchar(20) not null primary key, "
                     + "studentName varchar(50) not null, "
                     + "email varchar(50) not null, "
-                    + "password varchar(50) not null, booksBorrowed int default 0);";
+                    + "password varchar(50) not null, "
+                    + "booksBorrowed int default 0, "
+                    + "charges double precision(8,3) default 0);";
                 PreparedStatement pst = con.prepareStatement(sq);
                 pst.executeUpdate(); 
             }
@@ -60,14 +62,14 @@ public class LibraryManagementSystem {
             String p = "SELECT * FROM information_schema.tables WHERE table_schema = ? AND table_name = ? LIMIT 1;";
             PreparedStatement qw = con.prepareStatement(p);
             qw.setString(1, "lms");
-            qw.setString(2, "books");
+            qw.setString(2, "issueBooks");
             ResultSet r = qw.executeQuery();
             if(!r.next()){
                 String sq = "create table issueBooks (issueId int not null auto_increment primary key, "
                     + "studentId varchar(10) not null, "
                     + "bookId varchar(10) not null, "
                     + "fromdt DATE, "
-                    + "todt DATE, Status varchar(10));";
+                    + "todt DATE, Status varchar(20));";
                 PreparedStatement pst = con.prepareStatement(sq);
                 pst.executeUpdate();
             }

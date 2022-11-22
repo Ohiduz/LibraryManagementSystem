@@ -109,9 +109,9 @@ public class AdminLogin extends javax.swing.JFrame {
         sp.setVisible(true);
         dispose();
     }//GEN-LAST:event_btn_backMouseClicked
-    private boolean validateLogin(){
-        String id = txt_id.getText();
-        String password = txt_password.getText();
+    private boolean validateLogin(Admin adm){
+        String id = adm.getId();
+        String password = adm.getPassword();
         if(id.equals("")){
             JOptionPane.showMessageDialog(this, "Please enter ID!");
             return false;
@@ -126,13 +126,19 @@ public class AdminLogin extends javax.swing.JFrame {
         }
         return true;
     }
-    private void btn_loginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_loginMouseClicked
-        // TODO add your handling code here:
-        if(validateLogin()){
+    private void validateAndLogin(Admin adm){
+        if(validateLogin(adm)){
             AdminHomepage ah = new AdminHomepage();
             ah.setVisible(true);
             dispose();
         }
+    }
+    private void btn_loginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_loginMouseClicked
+        // TODO add your handling code here:
+        String id = txt_id.getText();
+        String password = txt_password.getText();
+        Admin adm = new Admin(id, password);
+        validateAndLogin(adm);
     }//GEN-LAST:event_btn_loginMouseClicked
 
     /**

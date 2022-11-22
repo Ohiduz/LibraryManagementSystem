@@ -9,11 +9,15 @@ package com.mycompany.librarymanagementsystem;
  * @author ohidu
  */
 public class RequestIssue extends javax.swing.JFrame {
-
+    String studId;
     /**
      * Creates new form RequestIssue
      */
     public RequestIssue() {
+        initComponents();
+    }
+    public RequestIssue(String studId){
+        this.studId = studId;
         initComponents();
     }
 
@@ -29,18 +33,25 @@ public class RequestIssue extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         btn_back = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        txt_bId = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
+        txt_bName = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        btn_search = new javax.swing.JButton();
-        jPanel2 = new javax.swing.JPanel();
-        btn_proceed = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
+        txt_fd = new javax.swing.JTextField();
+        txt_fm = new javax.swing.JTextField();
+        txt_fy = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        txt_td = new javax.swing.JTextField();
+        txt_tm = new javax.swing.JTextField();
+        txt_ty = new javax.swing.JTextField();
+        btn_request = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(200, 200, 200));
+        jPanel1.setPreferredSize(new java.awt.Dimension(750, 670));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btn_back.setBackground(new java.awt.Color(0, 102, 102));
@@ -63,66 +74,148 @@ public class RequestIssue extends javax.swing.JFrame {
         jLabel5.setText("Enter Book Id: ");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 50, -1, -1));
 
-        jTextField3.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        jPanel1.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 50, 387, -1));
+        txt_bId.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jPanel1.add(txt_bId, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 50, 387, -1));
 
         jLabel6.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jLabel6.setText("Enter Book Name: ");
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 150, -1, -1));
 
-        jTextField4.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        jPanel1.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 150, 387, -1));
+        txt_bName.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jPanel1.add(txt_bName, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 150, 387, -1));
 
         jLabel1.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jLabel1.setText("OR");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 100, -1, -1));
 
-        btn_search.setBackground(new java.awt.Color(0, 102, 102));
-        btn_search.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        btn_search.setForeground(new java.awt.Color(255, 255, 255));
-        btn_search.setText("Search");
-        btn_search.addActionListener(new java.awt.event.ActionListener() {
+        jLabel7.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jLabel7.setText("I need the book from: ");
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 320, -1, -1));
+
+        txt_fd.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        txt_fd.setText("DD");
+        txt_fd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_searchActionPerformed(evt);
+                txt_fdActionPerformed(evt);
             }
         });
-        jPanel1.add(btn_search, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 200, -1, -1));
+        jPanel1.add(txt_fd, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 320, 60, -1));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 6, 735, 250));
-
-        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        btn_proceed.setBackground(new java.awt.Color(0, 102, 102));
-        btn_proceed.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        btn_proceed.setForeground(new java.awt.Color(255, 255, 255));
-        btn_proceed.setText("Proceed to Request");
-        btn_proceed.addActionListener(new java.awt.event.ActionListener() {
+        txt_fm.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        txt_fm.setText("MM");
+        txt_fm.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_proceedActionPerformed(evt);
+                txt_fmActionPerformed(evt);
             }
         });
-        jPanel2.add(btn_proceed, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 140, -1, -1));
+        jPanel1.add(txt_fm, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 320, 60, -1));
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 270, 730, 340));
+        txt_fy.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        txt_fy.setText("YYYY");
+        txt_fy.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_fyActionPerformed(evt);
+            }
+        });
+        jPanel1.add(txt_fy, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 320, 110, -1));
+
+        jLabel8.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jLabel8.setText("I need the book till:");
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 380, -1, -1));
+
+        txt_td.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        txt_td.setText("DD");
+        txt_td.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_tdActionPerformed(evt);
+            }
+        });
+        jPanel1.add(txt_td, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 380, 60, -1));
+
+        txt_tm.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        txt_tm.setText("MM");
+        txt_tm.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_tmActionPerformed(evt);
+            }
+        });
+        jPanel1.add(txt_tm, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 380, 60, -1));
+
+        txt_ty.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        txt_ty.setText("YYYY");
+        txt_ty.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_tyActionPerformed(evt);
+            }
+        });
+        jPanel1.add(txt_ty, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 380, 110, -1));
+
+        btn_request.setBackground(new java.awt.Color(0, 102, 102));
+        btn_request.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        btn_request.setForeground(new java.awt.Color(255, 255, 255));
+        btn_request.setText("Request");
+        btn_request.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_requestMouseClicked(evt);
+            }
+        });
+        btn_request.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_requestActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btn_request, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 430, -1, -1));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 6, 735, 610));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btn_requestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_requestActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_requestActionPerformed
+
+    private void btn_requestMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_requestMouseClicked
+        // TODO add your handling code here:
+        String bookId = txt_bId.getText();
+        String bookName = txt_bName.getText();
+        MDate fromDate = new MDate(txt_fd.getText(), txt_fm.getText(), txt_fy.getText());
+        MDate toDate = new MDate(txt_td.getText(), txt_tm.getText(), txt_ty.getText());
+        SearchBookThread sbt = new SearchBookThread(studId, bookId, bookName, fromDate, toDate, this);
+        sbt.t.start();
+    }//GEN-LAST:event_btn_requestMouseClicked
+
+    private void txt_tyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_tyActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_tyActionPerformed
+
+    private void txt_tmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_tmActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_tmActionPerformed
+
+    private void txt_tdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_tdActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_tdActionPerformed
+
+    private void txt_fyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_fyActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_fyActionPerformed
+
+    private void txt_fmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_fmActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_fmActionPerformed
+
+    private void txt_fdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_fdActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_fdActionPerformed
 
     private void btn_backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_backActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_backActionPerformed
 
-    private void btn_searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_searchActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btn_searchActionPerformed
-
-    private void btn_proceedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_proceedActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btn_proceedActionPerformed
-
     private void btn_backMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_backMouseClicked
         // TODO add your handling code here:
-        StudentHomepage sh = new StudentHomepage();
+        StudentHomepage sh = new StudentHomepage(studId);
         sh.setVisible(true);
         dispose();
     }//GEN-LAST:event_btn_backMouseClicked
@@ -164,14 +257,20 @@ public class RequestIssue extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_back;
-    private javax.swing.JButton btn_proceed;
-    private javax.swing.JButton btn_search;
+    private javax.swing.JButton btn_request;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
+    private javax.swing.JTextField txt_bId;
+    private javax.swing.JTextField txt_bName;
+    private javax.swing.JTextField txt_fd;
+    private javax.swing.JTextField txt_fm;
+    private javax.swing.JTextField txt_fy;
+    private javax.swing.JTextField txt_td;
+    private javax.swing.JTextField txt_tm;
+    private javax.swing.JTextField txt_ty;
     // End of variables declaration//GEN-END:variables
 }

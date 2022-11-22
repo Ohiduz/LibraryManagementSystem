@@ -145,9 +145,9 @@ public class StudentLogin extends javax.swing.JFrame {
         ss.setVisible(true);
         dispose();
     }//GEN-LAST:event_btn_signupMouseClicked
-    private boolean validateLogin(){
-        String id = txt_id.getText();
-        String password = txt_password.getText();
+    private boolean validateLogin(Student st){
+        String id = st.getId();
+        String password = st.getPassword();
         if(id.equals("")){
             JOptionPane.showMessageDialog(this, "Please enter id!");
             return false;
@@ -158,7 +158,7 @@ public class StudentLogin extends javax.swing.JFrame {
         }
         try{
             Connection con = DBConnection.getConnection();
-            String s = "select * from students where studentId = ? and password = ? ;";
+            String s = "select * from students where studentId = ? and password = ?;";
             PreparedStatement pst = con.prepareStatement(s);
             pst.setString(1, id);
             pst.setString(2, password);
@@ -175,13 +175,19 @@ public class StudentLogin extends javax.swing.JFrame {
             return false;
         }
     }
-    private void btn_loginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_loginMouseClicked
-        // TODO add your handling code here:
-        if(validateLogin()){
-            StudentHomepage sh = new StudentHomepage();
+    private void validateAndLogin(Student s){
+        if(validateLogin(s)){
+            StudentHomepage sh = new StudentHomepage(s.id);
             sh.setVisible(true);
             dispose();
         }
+    }
+    private void btn_loginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_loginMouseClicked
+        // TODO add your handling code here:
+        String id = txt_id.getText();
+        String password = txt_password.getText();
+        Student s = new Student(id, password);
+        validateAndLogin(s);
     }//GEN-LAST:event_btn_loginMouseClicked
 
     /**

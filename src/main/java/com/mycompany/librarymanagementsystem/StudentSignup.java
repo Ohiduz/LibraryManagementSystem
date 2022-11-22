@@ -163,11 +163,11 @@ public class StudentSignup extends javax.swing.JFrame {
         sl.setVisible(true);
         dispose();
     }//GEN-LAST:event_btn_loginMouseClicked
-    private boolean validateSignup(){
-        String name = txt_name.getText();
-        String id = txt_id.getText();
-        String email = txt_email.getText();
-        String password = txt_password.getText();
+    private boolean validateSignup(Student s){
+        String name = s.getName();
+        String id = s.getId();
+        String email = s.getEmail();
+        String password = s.getPassword();
         if(name.equals("")){
             JOptionPane.showMessageDialog(this, "Please enter name!");
             return false;
@@ -201,11 +201,11 @@ public class StudentSignup extends javax.swing.JFrame {
         }
         return true;
     }
-    private void insertSignupDetails(){
-        String name = txt_name.getText();
-        String id = txt_id.getText();
-        String email = txt_email.getText();
-        String password = txt_password.getText();
+    private void insertSignupDetails(Student s){
+        String name = s.getName();
+        String id = s.getId();
+        String email = s.getEmail();
+        String password = s.getPassword();
         try{
             Connection con = DBConnection.getConnection();
             String x ="insert into students (studentId, studentName, email, password)"
@@ -217,7 +217,10 @@ public class StudentSignup extends javax.swing.JFrame {
             pst.setString(4, password);
             int rws = pst.executeUpdate();
             if(rws>0){
-                JOptionPane.showMessageDialog(this, "Sign-up successful!");
+                JOptionPane.showMessageDialog(this, "Sign-up successful! Please Login.");
+                StudentLogin slg = new StudentLogin();
+                slg.setVisible(true);
+                dispose();
             }
             else{
                 JOptionPane.showMessageDialog(this, "Sign-up failed!");
@@ -229,11 +232,19 @@ public class StudentSignup extends javax.swing.JFrame {
         
         
     }
+    private synchronized void  validateAndInsert(Student s){
+        if(validateSignup(s)){
+            insertSignupDetails(s);
+        }
+    }
     private void btn_signupMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_signupMouseClicked
         // TODO add your handling code here:
-        if(validateSignup()){
-            insertSignupDetails();
-        }
+        String name = txt_name.getText();
+        String id = txt_id.getText();
+        String email = txt_email.getText();
+        String password = txt_password.getText();
+        Student s = new Student(id, name, email, password);
+        validateAndInsert(s);
     }//GEN-LAST:event_btn_signupMouseClicked
 
     /**
