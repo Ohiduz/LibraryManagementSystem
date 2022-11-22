@@ -4,6 +4,14 @@
  */
 package com.mycompany.librarymanagementsystem;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author ohidu
@@ -15,12 +23,33 @@ public class ReissueBook extends javax.swing.JFrame {
      */
     public ReissueBook() {
         initComponents();
+        fillTable();
     }
     public ReissueBook(String studId) {
         this.studId = studId;
         initComponents();
+        fillTable();
     }
-
+    private void fillTable(){
+        DefaultTableModel model;
+        try{
+            Connection con = DBConnection.getConnection();
+            model = (DefaultTableModel) tbl_booksWS.getModel();
+            String sq = "select books.bookId, bookName from books, issueBooks where "
+                    + "books.bookId = issueBooks.bookId and studentId = ? and Status = ?";
+            PreparedStatement pst = con.prepareStatement(sq);
+            pst.setString(1, studId);
+            pst.setString(2, "Not returned");
+            ResultSet theBs = pst.executeQuery();
+            while(theBs.next()){
+                Object[] obj = {theBs.getString("bookId"), theBs.getString("bookName")};
+                model.addRow(obj);
+            }
+        }
+        catch(Exception e){
+            System.out.println(e);
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -32,16 +61,16 @@ public class ReissueBook extends javax.swing.JFrame {
 
         jPanel2 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
-        jTextField9 = new javax.swing.JTextField();
+        txt_bookId = new javax.swing.JTextField();
         btn_request = new javax.swing.JButton();
         btn_returnHome = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
+        txt_d = new javax.swing.JTextField();
+        txt_m = new javax.swing.JTextField();
+        txt_y = new javax.swing.JTextField();
         btn_back = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tbl_booksWS = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -52,18 +81,23 @@ public class ReissueBook extends javax.swing.JFrame {
         jLabel5.setText("Enter Book Id to reissue: ");
         jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 0, -1, -1));
 
-        jTextField9.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        jTextField9.addActionListener(new java.awt.event.ActionListener() {
+        txt_bookId.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        txt_bookId.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField9ActionPerformed(evt);
+                txt_bookIdActionPerformed(evt);
             }
         });
-        jPanel2.add(jTextField9, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 0, 190, -1));
+        jPanel2.add(txt_bookId, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 0, 190, -1));
 
         btn_request.setBackground(new java.awt.Color(0, 102, 102));
         btn_request.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         btn_request.setForeground(new java.awt.Color(255, 255, 255));
         btn_request.setText("Request");
+        btn_request.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_requestMouseClicked(evt);
+            }
+        });
         btn_request.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_requestActionPerformed(evt);
@@ -91,32 +125,32 @@ public class ReissueBook extends javax.swing.JFrame {
         jLabel6.setText("I need the book till:");
         jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, -1, -1));
 
-        jTextField5.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        jTextField5.setText("DD");
-        jTextField5.addActionListener(new java.awt.event.ActionListener() {
+        txt_d.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        txt_d.setText("DD");
+        txt_d.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField5ActionPerformed(evt);
+                txt_dActionPerformed(evt);
             }
         });
-        jPanel2.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 40, 60, -1));
+        jPanel2.add(txt_d, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 40, 60, -1));
 
-        jTextField6.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        jTextField6.setText("MM");
-        jTextField6.addActionListener(new java.awt.event.ActionListener() {
+        txt_m.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        txt_m.setText("MM");
+        txt_m.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField6ActionPerformed(evt);
+                txt_mActionPerformed(evt);
             }
         });
-        jPanel2.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 40, 60, -1));
+        jPanel2.add(txt_m, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 40, 60, -1));
 
-        jTextField3.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        jTextField3.setText("YYYY");
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+        txt_y.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        txt_y.setText("YYYY");
+        txt_y.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
+                txt_yActionPerformed(evt);
             }
         });
-        jPanel2.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 40, 110, -1));
+        jPanel2.add(txt_y, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 40, 110, -1));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 360, 710, 280));
 
@@ -136,10 +170,10 @@ public class ReissueBook extends javax.swing.JFrame {
         });
         getContentPane().add(btn_back, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
-        jTable1.setBackground(new java.awt.Color(240, 245, 245));
-        jTable1.setBorder(new javax.swing.border.MatteBorder(null));
-        jTable1.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tbl_booksWS.setBackground(new java.awt.Color(240, 245, 245));
+        tbl_booksWS.setBorder(new javax.swing.border.MatteBorder(null));
+        tbl_booksWS.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
+        tbl_booksWS.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -155,17 +189,17 @@ public class ReissueBook extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
-        jTable1.setRowHeight(24);
-        jScrollPane2.setViewportView(jTable1);
+        tbl_booksWS.setRowHeight(24);
+        jScrollPane2.setViewportView(tbl_booksWS);
 
         getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 750, 310));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField9ActionPerformed
+    private void txt_bookIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_bookIdActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField9ActionPerformed
+    }//GEN-LAST:event_txt_bookIdActionPerformed
 
     private void btn_requestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_requestActionPerformed
         // TODO add your handling code here:
@@ -175,17 +209,17 @@ public class ReissueBook extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_returnHomeActionPerformed
 
-    private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
+    private void txt_dActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_dActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField5ActionPerformed
+    }//GEN-LAST:event_txt_dActionPerformed
 
-    private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
+    private void txt_mActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_mActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField6ActionPerformed
+    }//GEN-LAST:event_txt_mActionPerformed
 
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+    private void txt_yActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_yActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
+    }//GEN-LAST:event_txt_yActionPerformed
 
     private void btn_backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_backActionPerformed
         // TODO add your handling code here:
@@ -204,6 +238,73 @@ public class ReissueBook extends javax.swing.JFrame {
         sh.setVisible(true);
         dispose();
     }//GEN-LAST:event_btn_returnHomeMouseClicked
+
+    private void btn_requestMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_requestMouseClicked
+        // TODO add your handling code here:
+        String bookId = txt_bookId.getText();
+        String d = txt_d.getText();
+        String m = txt_m.getText();
+        String y = txt_y.getText();
+        if(bookId.equals("")){
+            JOptionPane.showMessageDialog(this, "Please enter book id!");
+            return;
+        }
+        if(d.equals("") || m.equals("") || y.equals("")
+                || d.equals("DD") || m.equals("MM") || y.equals("YYYY")){
+            JOptionPane.showMessageDialog(this, "Please enter date!");
+            return;
+        }
+        SimpleDateFormat sdformat = new SimpleDateFormat("yyyy-MM-dd");
+        try{
+            Date d1 = sdformat.parse(y+"-"+m+"-"+d);
+            long diff = d1.getTime() - System.currentTimeMillis();
+            diff /= 1000;
+            diff /= 3600;
+            diff /= 24;
+            if(diff<0){
+                JOptionPane.showMessageDialog(this, "You entered a past date. Please enter valid date!");
+                return;
+            }
+            if(diff>15){
+                JOptionPane.showMessageDialog(this, "You cannot borrow for more than 15 days!");
+                return;
+            }
+            else{
+                Connection con = DBConnection.getConnection();
+                String sq = "select * from issueBooks where studentId = ? and bookId = ? and Status = ?";
+                PreparedStatement pss = con.prepareStatement(sq);
+                pss.setString(1, studId);
+                pss.setString(2, bookId);
+                pss.setString(3, "Not returned");
+                ResultSet theIss = pss.executeQuery();
+                if(theIss.next()){
+                    String iId = theIss.getString("issueId");
+                    String squp = "update issueBooks set todt = ? where issueId = ?;";
+                    PreparedStatement up = con.prepareStatement(squp);
+                    java.sql.Date newD = new java.sql.Date(d1.getTime());
+                    up.setDate(1, newD);
+                    up.setString(2, iId);
+                    int upib = up.executeUpdate();
+                    if(upib>0){
+                        JOptionPane.showMessageDialog(this, "Book has been reissued to you "
+                                + "from "+(new Date(System.currentTimeMillis())) + " to "+d1);
+                        return;
+                    }
+                    else{
+                        JOptionPane.showMessageDialog(this, "Book could not be reissued!");
+                        return;
+                    }
+                }
+                else{
+                    JOptionPane.showMessageDialog(this, "You haven't borrowed this book!");
+                    return;
+                }
+            }
+        }
+        catch(Exception e){
+            System.out.println(e);
+        }
+    }//GEN-LAST:event_btn_requestMouseClicked
 
     /**
      * @param args the command line arguments
@@ -248,10 +349,10 @@ public class ReissueBook extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField9;
+    private javax.swing.JTable tbl_booksWS;
+    private javax.swing.JTextField txt_bookId;
+    private javax.swing.JTextField txt_d;
+    private javax.swing.JTextField txt_m;
+    private javax.swing.JTextField txt_y;
     // End of variables declaration//GEN-END:variables
 }
