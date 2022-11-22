@@ -4,6 +4,11 @@
  */
 package com.mycompany.librarymanagementsystem;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author ohidu
@@ -15,10 +20,12 @@ public class ReturnBook extends javax.swing.JFrame {
      */
     public ReturnBook() {
         initComponents();
+        fillTable();
     }
     public ReturnBook(String studId) {
         this.studId = studId;
         initComponents();
+        fillTable();
     }
 
     /**
@@ -33,10 +40,11 @@ public class ReturnBook extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         btn_back = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tbl_btr = new javax.swing.JTable();
+        jLabel6 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
-        jTextField9 = new javax.swing.JTextField();
+        txt_rbid = new javax.swing.JTextField();
         btn_return = new javax.swing.JButton();
         btn_returnHome = new javax.swing.JButton();
 
@@ -61,10 +69,10 @@ public class ReturnBook extends javax.swing.JFrame {
         });
         jPanel1.add(btn_back, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
-        jTable1.setBackground(new java.awt.Color(240, 245, 245));
-        jTable1.setBorder(new javax.swing.border.MatteBorder(null));
-        jTable1.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tbl_btr.setBackground(new java.awt.Color(240, 245, 245));
+        tbl_btr.setBorder(new javax.swing.border.MatteBorder(null));
+        tbl_btr.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
+        tbl_btr.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -80,10 +88,14 @@ public class ReturnBook extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
-        jTable1.setRowHeight(24);
-        jScrollPane1.setViewportView(jTable1);
+        tbl_btr.setRowHeight(24);
+        jScrollPane1.setViewportView(tbl_btr);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 710, 300));
+
+        jLabel6.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jLabel6.setText("Books with you:");
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 20, -1, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 730, 350));
 
@@ -93,18 +105,23 @@ public class ReturnBook extends javax.swing.JFrame {
         jLabel5.setText("Enter Book Id to return: ");
         jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, -1, -1));
 
-        jTextField9.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        jTextField9.addActionListener(new java.awt.event.ActionListener() {
+        txt_rbid.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        txt_rbid.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField9ActionPerformed(evt);
+                txt_rbidActionPerformed(evt);
             }
         });
-        jPanel2.add(jTextField9, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 20, 190, -1));
+        jPanel2.add(txt_rbid, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 20, 190, -1));
 
         btn_return.setBackground(new java.awt.Color(0, 102, 102));
         btn_return.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         btn_return.setForeground(new java.awt.Color(255, 255, 255));
         btn_return.setText("Return");
+        btn_return.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_returnMouseClicked(evt);
+            }
+        });
         btn_return.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_returnActionPerformed(evt);
@@ -132,14 +149,33 @@ public class ReturnBook extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    private void fillTable(){
+        DefaultTableModel model = (DefaultTableModel) tbl_btr.getModel();
+        try{
+            Connection con = DBConnection.getConnection();
+            String sqg = "select issueBooks.bookId, bookName from issueBooks, books where issueBooks.Status = ? "
+                    + "and issueBooks.studentId = ? "
+                    + "and issueBooks.bookId = books.bookId group by bookId;";
+            PreparedStatement ps = con.prepareStatement(sqg);
+            ps.setString(1, "Not returned");
+            ps.setString(2, studId);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                Object[] obj = {rs.getString("bookId"), rs.getString("bookName")};
+                model.addRow(obj);
+            }
+        }
+        catch(Exception e){
+            System.out.println(e);
+        }
+    }
     private void btn_backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_backActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_backActionPerformed
 
-    private void jTextField9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField9ActionPerformed
+    private void txt_rbidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_rbidActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField9ActionPerformed
+    }//GEN-LAST:event_txt_rbidActionPerformed
 
     private void btn_returnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_returnActionPerformed
         // TODO add your handling code here:
@@ -162,6 +198,13 @@ public class ReturnBook extends javax.swing.JFrame {
         sh.setVisible(true);
         dispose();
     }//GEN-LAST:event_btn_returnHomeMouseClicked
+
+    private void btn_returnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_returnMouseClicked
+        // TODO add your handling code here:
+        String rbid = txt_rbid.getText();
+        ReturnBookThread rbt = new ReturnBookThread(studId, rbid, this);
+        rbt.t.start();
+    }//GEN-LAST:event_btn_returnMouseClicked
 
     /**
      * @param args the command line arguments
@@ -203,10 +246,11 @@ public class ReturnBook extends javax.swing.JFrame {
     private javax.swing.JButton btn_return;
     private javax.swing.JButton btn_returnHome;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField9;
+    private javax.swing.JTable tbl_btr;
+    private javax.swing.JTextField txt_rbid;
     // End of variables declaration//GEN-END:variables
 }

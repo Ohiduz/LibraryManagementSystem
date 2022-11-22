@@ -4,6 +4,11 @@
  */
 package com.mycompany.librarymanagementsystem;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author ohidu
@@ -29,12 +34,12 @@ public class AddBook extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         btn_back = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        txt_bookId = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
+        txt_bookName = new javax.swing.JTextField();
         btn_add = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
+        txt_quantity = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -62,20 +67,25 @@ public class AddBook extends javax.swing.JFrame {
         jLabel5.setText("Enter Book Id: ");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 50, -1, -1));
 
-        jTextField3.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        jPanel1.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 50, 387, -1));
+        txt_bookId.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jPanel1.add(txt_bookId, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 50, 387, -1));
 
         jLabel6.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jLabel6.setText("Enter Book Name: ");
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 110, -1, -1));
 
-        jTextField4.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        jPanel1.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 110, 387, -1));
+        txt_bookName.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jPanel1.add(txt_bookName, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 110, 387, -1));
 
         btn_add.setBackground(new java.awt.Color(0, 102, 102));
         btn_add.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         btn_add.setForeground(new java.awt.Color(255, 255, 255));
         btn_add.setText("Add");
+        btn_add.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_addMouseClicked(evt);
+            }
+        });
         btn_add.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_addActionPerformed(evt);
@@ -87,8 +97,8 @@ public class AddBook extends javax.swing.JFrame {
         jLabel7.setText("Enter quantity: ");
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 170, -1, -1));
 
-        jTextField5.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        jPanel1.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 170, 387, -1));
+        txt_quantity.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jPanel1.add(txt_quantity, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 170, 387, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 6, 735, 280));
 
@@ -109,6 +119,67 @@ public class AddBook extends javax.swing.JFrame {
         ah.setVisible(true);
         dispose();
     }//GEN-LAST:event_btn_backMouseClicked
+
+    private void btn_addMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_addMouseClicked
+        // TODO add your handling code here:
+        String bookId = txt_bookId.getText();
+        String bookName = txt_bookName.getText();
+        if(bookId.equals("")){
+            JOptionPane.showMessageDialog(this, "Please enter book id!");
+            return;
+        }
+        if(bookName.equals("")){
+            JOptionPane.showMessageDialog(this, "Please enter book name!");
+            return;
+        }
+        if(txt_quantity.getText().equals("")){
+            JOptionPane.showMessageDialog(this, "Please enter quantity of books to add!");
+        }
+        int quantity = Integer.parseInt(txt_quantity.getText());
+        try{
+            Connection con = DBConnection.getConnection();
+            String sqgb = "select * from books where bookId = ?;";
+            PreparedStatement gtb = con.prepareStatement(sqgb);
+            gtb.setString(1, bookId);
+            ResultSet theB = gtb.executeQuery();
+            if(theB.next()){
+                int curr_quan = theB.getInt("quantity");
+                String sqatob = "update books set quantity = ? where bookId = ?;";
+                PreparedStatement atob = con.prepareStatement(sqatob);
+                atob.setInt(1, curr_quan+quantity);
+                atob.setString(2, bookId);
+                int addedobook = atob.executeUpdate();
+                if(addedobook>0){
+                    JOptionPane.showMessageDialog(this, "Book has been added successfully!");
+                    return;
+                }
+                else{
+                    JOptionPane.showMessageDialog(this, "Book could not be added!");
+                    return;
+                }
+            }
+            else{
+                String sqatnb = "insert into books (bookId, bookName, quantity) "
+                        + "values (?,?,?);";
+                PreparedStatement atnb = con.prepareStatement(sqatnb);
+                atnb.setString(1, bookId);
+                atnb.setString(2, bookName);
+                atnb.setInt(3, quantity);
+                int addednbook = atnb.executeUpdate();
+                if(addednbook>0){
+                    JOptionPane.showMessageDialog(this, "Book has been added successfully!");
+                    return;
+                }
+                else{
+                    JOptionPane.showMessageDialog(this, "Book could not be added!");
+                    return;
+                }
+            }
+        }
+        catch(Exception e){
+            System.out.println(e);
+        }
+    }//GEN-LAST:event_btn_addMouseClicked
 
     /**
      * @param args the command line arguments
@@ -152,8 +223,8 @@ public class AddBook extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
+    private javax.swing.JTextField txt_bookId;
+    private javax.swing.JTextField txt_bookName;
+    private javax.swing.JTextField txt_quantity;
     // End of variables declaration//GEN-END:variables
 }

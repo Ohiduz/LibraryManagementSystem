@@ -182,7 +182,7 @@ public class RequestIssue extends javax.swing.JFrame {
         MDate fromDate = new MDate(txt_fd.getText(), txt_fm.getText(), txt_fy.getText());
         MDate toDate = new MDate(txt_td.getText(), txt_tm.getText(), txt_ty.getText());
         SearchBookThread sbt = new SearchBookThread(studId, bookId, bookName, fromDate, toDate, this);
-        sbt.t.start();
+        sbt.t.start();      
     }//GEN-LAST:event_btn_requestMouseClicked
 
     private void txt_tyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_tyActionPerformed
