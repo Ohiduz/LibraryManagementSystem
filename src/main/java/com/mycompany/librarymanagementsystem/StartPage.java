@@ -31,12 +31,8 @@ public class StartPage extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         btn_admin = new javax.swing.JButton();
         btn_student = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        btn_submit = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(80, 80, 80));
@@ -88,10 +84,6 @@ public class StartPage extends javax.swing.JFrame {
         });
         jPanel2.add(btn_student, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, 192, 74));
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel2.setText("OR");
-        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 250, 50, -1));
-
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel4.setText("Login as: ");
         jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 200, -1));
@@ -99,19 +91,6 @@ public class StartPage extends javax.swing.JFrame {
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(248, 143, -1, -1));
 
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel3.setText("Enter complete URL for input test cases file:");
-        jPanel3.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(146, 6, -1, -1));
-
-        jTextField1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jTextField1.setText("E.g., D://proj4/testcase.txt");
-        jPanel3.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(146, 50, 460, -1));
-
-        btn_submit.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        btn_submit.setText("Submit");
-        jPanel3.add(btn_submit, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 108, -1, -1));
-
         getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 431, 759, 233));
 
         pack();
@@ -177,14 +156,10 @@ public class StartPage extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_admin;
     private javax.swing.JButton btn_student;
-    private javax.swing.JButton btn_submit;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }
