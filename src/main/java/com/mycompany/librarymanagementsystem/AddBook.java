@@ -7,6 +7,7 @@ package com.mycompany.librarymanagementsystem;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /**
@@ -136,6 +137,10 @@ public class AddBook extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Please enter quantity of books to add!");
         }
         int quantity = Integer.parseInt(txt_quantity.getText());
+        addBookH(bookId, bookName, quantity, this);
+    }//GEN-LAST:event_btn_addMouseClicked
+
+    public static void addBookH(String bookId, String bookName, int quantity, JFrame j){
         try{
             Connection con = DBConnection.getConnection();
             String sqgb = "select * from books where bookId = ?;";
@@ -150,11 +155,11 @@ public class AddBook extends javax.swing.JFrame {
                 atob.setString(2, bookId);
                 int addedobook = atob.executeUpdate();
                 if(addedobook>0){
-                    JOptionPane.showMessageDialog(this, "Book has been added successfully!");
+                    JOptionPane.showMessageDialog(j, "Book has been added successfully!");
                     return;
                 }
                 else{
-                    JOptionPane.showMessageDialog(this, "Book could not be added!");
+                    JOptionPane.showMessageDialog(j, "Book could not be added!");
                     return;
                 }
             }
@@ -167,11 +172,11 @@ public class AddBook extends javax.swing.JFrame {
                 atnb.setInt(3, quantity);
                 int addednbook = atnb.executeUpdate();
                 if(addednbook>0){
-                    JOptionPane.showMessageDialog(this, "Book has been added successfully!");
+                    JOptionPane.showMessageDialog(j, "Book has been added successfully!");
                     return;
                 }
                 else{
-                    JOptionPane.showMessageDialog(this, "Book could not be added!");
+                    JOptionPane.showMessageDialog(j, "Book could not be added!");
                     return;
                 }
             }
@@ -179,8 +184,52 @@ public class AddBook extends javax.swing.JFrame {
         catch(Exception e){
             System.out.println(e);
         }
-    }//GEN-LAST:event_btn_addMouseClicked
-
+    }
+    public static void addBook(String bookId, String bookName, int quantity){
+        try{
+            Connection con = DBConnection.getConnection();
+            String sqgb = "select * from books where bookId = ?;";
+            PreparedStatement gtb = con.prepareStatement(sqgb);
+            gtb.setString(1, bookId);
+            ResultSet theB = gtb.executeQuery();
+            if(theB.next()){
+                int curr_quan = theB.getInt("quantity");
+                String sqatob = "update books set quantity = ? where bookId = ?;";
+                PreparedStatement atob = con.prepareStatement(sqatob);
+                atob.setInt(1, curr_quan+quantity);
+                atob.setString(2, bookId);
+                int addedobook = atob.executeUpdate();
+                if(addedobook>0){
+                    System.out.println("Book has been added successfully!");
+                    return;
+                }
+                else{
+                    System.out.println("Book could not be added!");
+                    return;
+                }
+            }
+            else{
+                String sqatnb = "insert into books (bookId, bookName, quantity) "
+                        + "values (?,?,?);";
+                PreparedStatement atnb = con.prepareStatement(sqatnb);
+                atnb.setString(1, bookId);
+                atnb.setString(2, bookName);
+                atnb.setInt(3, quantity);
+                int addednbook = atnb.executeUpdate();
+                if(addednbook>0){
+                    System.out.println("Book has been added successfully!");
+                    return;
+                }
+                else{
+                    System.out.println("Book could not be added!");
+                    return;
+                }
+            }
+        }
+        catch(Exception e){
+            System.out.println(e);
+        }
+    }
     /**
      * @param args the command line arguments
      */

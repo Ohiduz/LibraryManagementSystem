@@ -14,70 +14,29 @@ import java.sql.ResultSet;
  * @author ohidu
  */
 public class LibraryManagementSystem {
-
+    
     public static void main(String[] args) {
-        Connection con;
         
-        try{
-            con = DBConnection.getConnection();
-            String p = "SELECT * FROM information_schema.tables WHERE table_schema = ? AND table_name = ? LIMIT 1;";
-            PreparedStatement qw = con.prepareStatement(p);
-            qw.setString(1, "lms");
-            qw.setString(2, "students");
-            ResultSet r = qw.executeQuery();
-            if(!r.next()){
-               String sq = "create table students (studentId varchar(20) not null primary key, "
-                    + "studentName varchar(50) not null, "
-                    + "email varchar(50) not null, "
-                    + "password varchar(50) not null, "
-                    + "booksBorrowed int default 0, "
-                    + "charges double precision(8,3) default 0);";
-                PreparedStatement pst = con.prepareStatement(sq);
-                pst.executeUpdate(); 
-            }
-        }
-        catch(Exception e){
-            System.out.println(e);
-        }
-        try{
-            con = DBConnection.getConnection();
-            String p = "SELECT * FROM information_schema.tables WHERE table_schema = ? AND table_name = ? LIMIT 1;";
-            PreparedStatement qw = con.prepareStatement(p);
-            qw.setString(1, "lms");
-            qw.setString(2, "books");
-            ResultSet r = qw.executeQuery();
-            if(!r.next()){
-                String sq = "create table books (bookId varchar(10) not null primary key, "
-                    + "bookName varchar(50) not null, "
-                    + "quantity int);";
-                PreparedStatement pst = con.prepareStatement(sq);
-                pst.executeUpdate();
-            }  
-        }
-        catch(Exception e){
-            System.out.println(e);
-        }
-        try{
-            con = DBConnection.getConnection();
-            String p = "SELECT * FROM information_schema.tables WHERE table_schema = ? AND table_name = ? LIMIT 1;";
-            PreparedStatement qw = con.prepareStatement(p);
-            qw.setString(1, "lms");
-            qw.setString(2, "issueBooks");
-            ResultSet r = qw.executeQuery();
-            if(!r.next()){
-                String sq = "create table issueBooks (issueId int not null auto_increment primary key, "
-                    + "studentId varchar(10) not null, "
-                    + "bookId varchar(10) not null, "
-                    + "fromdt DATE, "
-                    + "todt DATE, Status varchar(20));";
-                PreparedStatement pst = con.prepareStatement(sq);
-                pst.executeUpdate();
-            }
-        }
-        catch(Exception e){
-            System.out.println(e);
-        }
+        DBConnection.createDatabase();
+        DBConnection.createStudentsTable();
+        DBConnection.createBooksTable();
+        DBConnection.createIssueBooksTable();
+        addSomeBooks();
+        
+        
         StartPage sp = new StartPage();
         sp.setVisible(true);
+    }
+    public static void addSomeBooks(){
+        AddBook.addBook("1","Atomic Habits" , 10);
+        AddBook.addBook("2", "Digital Design", 10);
+        AddBook.addBook("3","Differential Equations" , 10);
+        AddBook.addBook("4", "Thermodynamics", 10);
+        AddBook.addBook("5","General Biology" , 10);
+        AddBook.addBook("6", "Discrete Structures", 10);
+        AddBook.addBook("7","Java Reference" , 10);
+        AddBook.addBook("8", "Philosophy", 10);
+        AddBook.addBook("9","Psychology" , 10);
+        AddBook.addBook("10", "Microprocessors", 10);
     }
 }
