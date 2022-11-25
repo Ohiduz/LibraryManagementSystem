@@ -13,7 +13,7 @@ import javax.swing.JOptionPane;
  *
  * @author ohidu
  */
-public class StudentSignup extends javax.swing.JFrame {
+public class StudentSignup extends javax.swing.JFrame implements StudentRegistration{
 
     /**
      * Creates new form StudentSignup
@@ -163,7 +163,7 @@ public class StudentSignup extends javax.swing.JFrame {
         sl.setVisible(true);
         dispose();
     }//GEN-LAST:event_btn_loginMouseClicked
-    private boolean validateSignup(Student s){
+    public boolean validateSignup(Student s){
         String name = s.getName();
         String id = s.getId();
         String email = s.getEmail();
@@ -201,7 +201,7 @@ public class StudentSignup extends javax.swing.JFrame {
         }
         return true;
     }
-    private void insertSignupDetails(Student s){
+    public void insertSignupDetails(Student s){
         String name = s.getName();
         String id = s.getId();
         String email = s.getEmail();
@@ -232,7 +232,7 @@ public class StudentSignup extends javax.swing.JFrame {
         
         
     }
-    private synchronized void  validateAndInsert(Student s){
+    public synchronized void  validateAndInsert(Student s){
         if(validateSignup(s)){
             insertSignupDetails(s);
         }

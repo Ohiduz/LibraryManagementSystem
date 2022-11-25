@@ -13,7 +13,7 @@ import javax.swing.JOptionPane;
  *
  * @author ohidu
  */
-public class StudentLogin extends javax.swing.JFrame {
+public class StudentLogin extends javax.swing.JFrame{
 
     /**
      * Creates new form StudentLogin
@@ -145,7 +145,7 @@ public class StudentLogin extends javax.swing.JFrame {
         ss.setVisible(true);
         dispose();
     }//GEN-LAST:event_btn_signupMouseClicked
-    private boolean validateLogin(Student st){
+    public boolean validateLogin(Student st){
         String id = st.getId();
         String password = st.getPassword();
         if(id.equals("")){

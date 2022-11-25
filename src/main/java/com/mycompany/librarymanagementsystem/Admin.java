@@ -8,27 +8,9 @@ package com.mycompany.librarymanagementsystem;
  *
  * @author ohidu
  */
-public class Admin {
-    String id, password;
+public class Admin extends User{
     
     public Admin(String id, String password){
-        this.id=id;
-        this.password=password;
+        super(id, password);
     }
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-    
 }

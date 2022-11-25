@@ -8,8 +8,8 @@ package com.mycompany.librarymanagementsystem;
  *
  * @author ohidu
  */
-public class Student {
-    String id, name, email, password;
+public class Student extends User{
+    String name, email;
     int booksBorrowed;
 
     public double getCharges() {
@@ -21,22 +21,12 @@ public class Student {
     }
     double charges;
     public Student(String id, String password){
-        this.id=id;
-        this.password=password;
+        super(id, password);
     }
     public Student(String id, String name, String email, String password){
-        this.id=id;
+        super(id, password);
         this.name=name;
         this.email=email;
-        this.password=password;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     public String getName() {
@@ -53,14 +43,6 @@ public class Student {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public int getBooksBorrowed() {

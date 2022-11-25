@@ -22,12 +22,30 @@ public class StudentHomepage extends javax.swing.JFrame {
         initComponents();
         showBooks();
         showDues();
+        welcome();
     }
     public StudentHomepage(String studId){
         this.studId = studId;
         initComponents();
         showBooks();
         showDues();
+        welcome();
+    }
+    private void welcome(){
+        lbl_welcome.setText("");
+        try{
+            Connection con = DBConnection.getConnection();
+            String sq = "select * from students where studentID = ?;";
+            PreparedStatement pstmt = con.prepareStatement(sq);
+            pstmt.setString(1, studId);
+            ResultSet rs = pstmt.executeQuery();
+            if(rs.next()){
+                lbl_welcome.setText("Welcome "+rs.getString("studentName")+"!");
+            }
+        }
+        catch(Exception e){
+            System.out.println(e);
+        }
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -39,7 +57,7 @@ public class StudentHomepage extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        lbl_welcome = new javax.swing.JLabel();
         yd = new javax.swing.JButton();
         lbl_yd = new javax.swing.JLabel();
         jButton6 = new javax.swing.JButton();
@@ -56,10 +74,10 @@ public class StudentHomepage extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(200, 200, 200));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Bodoni MT", 0, 36)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 153, 102));
-        jLabel1.setText("Welcome Jack!");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 0, 320, 85));
+        lbl_welcome.setFont(new java.awt.Font("Bodoni MT", 0, 36)); // NOI18N
+        lbl_welcome.setForeground(new java.awt.Color(0, 153, 102));
+        lbl_welcome.setText("Welcome Jack!");
+        jPanel1.add(lbl_welcome, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 0, 320, 85));
 
         yd.setBackground(new java.awt.Color(0, 102, 102));
         yd.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
@@ -343,10 +361,10 @@ public class StudentHomepage extends javax.swing.JFrame {
     private javax.swing.JButton btn_reqReissue;
     private javax.swing.JButton btn_returnBook;
     private javax.swing.JButton jButton6;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel lbl_bwy;
+    private javax.swing.JLabel lbl_welcome;
     private javax.swing.JLabel lbl_yd;
     private javax.swing.JButton yd;
     // End of variables declaration//GEN-END:variables
