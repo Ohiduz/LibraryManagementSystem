@@ -286,6 +286,7 @@ public class ReissueBook extends javax.swing.JFrame {
                     if(upib>0){
                         JOptionPane.showMessageDialog(this, "Book has been reissued to you "
                                 + "from "+(new Date(System.currentTimeMillis())) + " to "+d1);
+                        
                         return;
                     }
                     else{
