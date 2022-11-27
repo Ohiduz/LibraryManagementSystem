@@ -11,15 +11,8 @@ package com.mycompany.librarymanagementsystem;
 public class Student extends User{
     String name, email;
     int booksBorrowed;
-
-    public double getCharges() {
-        return charges;
-    }
-
-    public void setCharges(double charges) {
-        this.charges = charges;
-    }
     double charges;
+    
     public Student(String id, String password){
         super(id, password);
     }
@@ -27,6 +20,14 @@ public class Student extends User{
         super(id, password);
         this.name=name;
         this.email=email;
+    }
+    
+    public double getCharges() {
+        return charges;
+    }
+
+    public void setCharges(double charges) {
+        this.charges = charges;
     }
 
     public String getName() {

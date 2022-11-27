@@ -143,6 +143,9 @@ public class RemoveBook extends javax.swing.JFrame {
 
     private void btn_removeAllMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_removeAllMouseClicked
         // TODO add your handling code here:
+        removeAllBooks();
+    }//GEN-LAST:event_btn_removeAllMouseClicked
+    private void removeAllBooks(){
         String bookId = txt_bookId.getText();
         String bookName = txt_bookName.getText();
         if(bookId.equals("") && bookName.equals("")){
@@ -192,10 +195,13 @@ public class RemoveBook extends javax.swing.JFrame {
                 return;
             }
         }
-    }//GEN-LAST:event_btn_removeAllMouseClicked
-
+    }
+    
     private void btn_removeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_removeMouseClicked
         // TODO add your handling code here:
+        removeBook();
+    }//GEN-LAST:event_btn_removeMouseClicked
+    private void removeBook(){
         String bookId = txt_bookId.getText();
         String bookName = txt_bookName.getText();
         if(bookId.equals("") && bookName.equals("")){
@@ -284,8 +290,8 @@ public class RemoveBook extends javax.swing.JFrame {
                 System.out.println(e);
             }
         }
-    }//GEN-LAST:event_btn_removeMouseClicked
-
+    }
+    
     /**
      * @param args the command line arguments
      */

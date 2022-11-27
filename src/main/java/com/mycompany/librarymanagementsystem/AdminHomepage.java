@@ -20,6 +20,9 @@ public class AdminHomepage extends javax.swing.JFrame {
     public AdminHomepage() {
         
         initComponents();
+        showStudsNBooks();
+    }
+    private void showStudsNBooks(){
         lbl_books.setText("");
         lbl_studs.setText("");
         try{
@@ -43,7 +46,6 @@ public class AdminHomepage extends javax.swing.JFrame {
             System.out.println(e);
         }
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

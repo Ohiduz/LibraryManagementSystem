@@ -21,6 +21,10 @@ public class RemoveStudent extends javax.swing.JFrame {
      */
     public RemoveStudent() {
         initComponents();
+        showStudents();
+    }
+    
+    private void showStudents(){
         DefaultTableModel model;
         try{
             Connection con = DBConnection.getConnection();
@@ -151,6 +155,10 @@ public class RemoveStudent extends javax.swing.JFrame {
 
     private void btn_removeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_removeMouseClicked
         // TODO add your handling code here:
+        removeStudent();
+    }//GEN-LAST:event_btn_removeMouseClicked
+
+    private void removeStudent(){
         String studId = txt_studId.getText();
         if(studId.equals("")){
             JOptionPane.showMessageDialog(this, "Please enter student id to remove!");
@@ -186,8 +194,8 @@ public class RemoveStudent extends javax.swing.JFrame {
         catch(Exception e){
             System.out.println(e);
         }
-    }//GEN-LAST:event_btn_removeMouseClicked
-
+    }
+    
     /**
      * @param args the command line arguments
      */

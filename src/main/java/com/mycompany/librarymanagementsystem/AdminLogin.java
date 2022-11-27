@@ -10,7 +10,7 @@ import javax.swing.JOptionPane;
  *
  * @author ohidu
  */
-public class AdminLogin extends javax.swing.JFrame {
+public class AdminLogin extends javax.swing.JFrame implements UserLogin{
 
     /**
      * Creates new form AdminLogin
@@ -109,7 +109,7 @@ public class AdminLogin extends javax.swing.JFrame {
         sp.setVisible(true);
         dispose();
     }//GEN-LAST:event_btn_backMouseClicked
-    private boolean validateLogin(Admin adm){
+    public boolean validateLogin(User adm){
         String id = adm.getId();
         String password = adm.getPassword();
         if(id.equals("")){
@@ -126,7 +126,7 @@ public class AdminLogin extends javax.swing.JFrame {
         }
         return true;
     }
-    private void validateAndLogin(Admin adm){
+    public void validateAndLogin(User adm){
         if(validateLogin(adm)){
             AdminHomepage ah = new AdminHomepage();
             ah.setVisible(true);

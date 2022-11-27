@@ -238,9 +238,7 @@ public class ReissueBook extends javax.swing.JFrame {
         sh.setVisible(true);
         dispose();
     }//GEN-LAST:event_btn_returnHomeMouseClicked
-
-    private void btn_requestMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_requestMouseClicked
-        // TODO add your handling code here:
+    private void reissueBook(){
         String bookId = txt_bookId.getText();
         String d = txt_d.getText();
         String m = txt_m.getText();
@@ -304,6 +302,10 @@ public class ReissueBook extends javax.swing.JFrame {
         catch(Exception e){
             System.out.println(e);
         }
+    }
+    private void btn_requestMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_requestMouseClicked
+        // TODO add your handling code here:
+        reissueBook();
     }//GEN-LAST:event_btn_requestMouseClicked
 
     /**
