@@ -4,10 +4,7 @@
  */
 package com.mycompany.librarymanagementsystem;
 
-/**
- *
- * @author ohidu
- */
+
 public class User {
     String id, password;
     public User(String id, String password){

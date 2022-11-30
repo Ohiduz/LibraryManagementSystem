@@ -4,10 +4,7 @@
  */
 package com.mycompany.librarymanagementsystem;
 
-/**
- *
- * @author ohidu
- */
+
 public interface StudentRegistration {
     boolean validateSignup(Student s);
     void insertSignupDetails(Student s);

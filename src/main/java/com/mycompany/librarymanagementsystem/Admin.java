@@ -4,10 +4,7 @@
  */
 package com.mycompany.librarymanagementsystem;
 
-/**
- *
- * @author ohidu
- */
+
 public class Admin extends User{
     
     public Admin(String id, String password){

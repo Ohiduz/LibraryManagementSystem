@@ -4,10 +4,7 @@
  */
 package com.mycompany.librarymanagementsystem;
 
-/**
- *
- * @author ohidu
- */
+
 public interface UserLogin {
     public boolean validateLogin(User u);
     public void validateAndLogin(User u); 

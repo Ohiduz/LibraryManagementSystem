@@ -4,10 +4,7 @@
  */
 package com.mycompany.librarymanagementsystem;
 
-/**
- *
- * @author ohidu
- */
+
 public class MDate {
     String d, m, y;
     public MDate(String d, String m, String y){

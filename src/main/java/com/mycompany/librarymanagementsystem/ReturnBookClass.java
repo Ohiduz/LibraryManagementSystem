@@ -11,10 +11,7 @@ import java.sql.ResultSet;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author ohidu
- */
+
 public class ReturnBookClass {
     public static synchronized void returnBook(String studId, String bookId, JFrame j){
         try{

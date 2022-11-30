@@ -9,10 +9,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-/**
- *
- * @author ohidu
- */
+
 public class LibraryManagementSystem {
     
     public static void main(String[] args) {

@@ -13,10 +13,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import java.util.Date;
 
-/**
- *
- * @author ohidu
- */
+
 public class SearchBookClass {
     public static synchronized void searchBook(String studId, String bookId, String bookName, MDate fromDate, MDate toDate, JFrame j){
         if(bookId.equals("") && bookName.equals("")){

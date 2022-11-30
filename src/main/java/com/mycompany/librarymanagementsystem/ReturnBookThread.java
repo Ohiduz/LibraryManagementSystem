@@ -6,10 +6,7 @@ package com.mycompany.librarymanagementsystem;
 
 import javax.swing.JFrame;
 
-/**
- *
- * @author ohidu
- */
+
 public class ReturnBookThread implements Runnable {
     Thread t;
     String studId, bId;

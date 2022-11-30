@@ -6,10 +6,7 @@ package com.mycompany.librarymanagementsystem;
 
 import javax.swing.JFrame;
 
-/**
- *
- * @author ohidu
- */
+
 public class SearchBookThread implements Runnable {
     Thread t;
     JFrame j;
