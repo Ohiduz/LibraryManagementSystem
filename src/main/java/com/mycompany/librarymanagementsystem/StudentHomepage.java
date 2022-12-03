@@ -53,6 +53,8 @@ public class StudentHomepage extends javax.swing.JFrame {
         lbl_yd = new javax.swing.JLabel();
         jButton6 = new javax.swing.JButton();
         lbl_bwy = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         btn_logout = new javax.swing.JButton();
         btn_reqReissue = new javax.swing.JButton();
@@ -79,12 +81,12 @@ public class StudentHomepage extends javax.swing.JFrame {
                 ydActionPerformed(evt);
             }
         });
-        jPanel1.add(yd, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 50, -1, -1));
+        jPanel1.add(yd, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 120, -1, -1));
 
         lbl_yd.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
         lbl_yd.setForeground(new java.awt.Color(51, 51, 51));
         lbl_yd.setText("0.00");
-        jPanel1.add(lbl_yd, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 90, 130, -1));
+        jPanel1.add(lbl_yd, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 160, 130, -1));
 
         jButton6.setBackground(new java.awt.Color(0, 102, 102));
         jButton6.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
@@ -95,14 +97,20 @@ public class StudentHomepage extends javax.swing.JFrame {
                 jButton6ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, -1, -1));
+        jPanel1.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, -1, -1));
 
         lbl_bwy.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
         lbl_bwy.setForeground(new java.awt.Color(51, 51, 51));
         lbl_bwy.setText("2");
-        jPanel1.add(lbl_bwy, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 80, -1));
+        jPanel1.add(lbl_bwy, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, 80, -1));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 6, 735, 131));
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/icns/BITS_Pilani-Logo.svg.png"))); // NOI18N
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
+
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/icns/29302.png"))); // NOI18N
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 10, -1, -1));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 6, 735, 190));
 
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -170,7 +178,7 @@ public class StudentHomepage extends javax.swing.JFrame {
         });
         jPanel2.add(btn_reqIssue, new org.netbeans.lib.awtextra.AbsoluteConstraints(122, 70, 500, 74));
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 149, 735, 515));
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 214, 735, 450));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -327,6 +335,8 @@ public class StudentHomepage extends javax.swing.JFrame {
     private javax.swing.JButton btn_reqReissue;
     private javax.swing.JButton btn_returnBook;
     private javax.swing.JButton jButton6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel lbl_bwy;

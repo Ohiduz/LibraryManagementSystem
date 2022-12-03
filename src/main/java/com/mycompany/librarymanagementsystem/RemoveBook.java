@@ -23,7 +23,6 @@ public class RemoveBook extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        btn_back = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         txt_bookId = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
@@ -32,28 +31,17 @@ public class RemoveBook extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         txt_quantity = new javax.swing.JTextField();
         btn_remove = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        btn_back = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(200, 200, 200));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        btn_back.setBackground(new java.awt.Color(0, 102, 102));
-        btn_back.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
-        btn_back.setForeground(new java.awt.Color(255, 255, 255));
-        btn_back.setText("<<Back");
-        btn_back.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btn_backMouseClicked(evt);
-            }
-        });
-        btn_back.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_backActionPerformed(evt);
-            }
-        });
-        jPanel1.add(btn_back, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jLabel5.setText("Enter Book Id: ");
@@ -108,7 +96,39 @@ public class RemoveBook extends javax.swing.JFrame {
         });
         jPanel1.add(btn_remove, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 250, -1, -1));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 6, 735, 300));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(5, 160, 740, 300));
+
+        jPanel3.setBackground(new java.awt.Color(200, 200, 200));
+        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel2.setFont(new java.awt.Font("Bodoni MT", 0, 36)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 153, 102));
+        jLabel2.setText("Remove a book:");
+        jPanel3.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 20, 320, 85));
+
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/icns/BITS_Pilani-Logo.svg.png"))); // NOI18N
+        jPanel3.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, -1, -1));
+
+        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/icns/29302.png"))); // NOI18N
+        jPanel3.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 20, -1, -1));
+
+        btn_back.setBackground(new java.awt.Color(0, 102, 102));
+        btn_back.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
+        btn_back.setForeground(new java.awt.Color(255, 255, 255));
+        btn_back.setText("<<Back");
+        btn_back.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_backMouseClicked(evt);
+            }
+        });
+        btn_back.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_backActionPerformed(evt);
+            }
+        });
+        jPanel3.add(btn_back, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
+        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 6, 740, 150));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -297,10 +317,14 @@ public class RemoveBook extends javax.swing.JFrame {
     private javax.swing.JButton btn_back;
     private javax.swing.JButton btn_remove;
     private javax.swing.JButton btn_removeAll;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JTextField txt_bookId;
     private javax.swing.JTextField txt_bookName;
     private javax.swing.JTextField txt_quantity;

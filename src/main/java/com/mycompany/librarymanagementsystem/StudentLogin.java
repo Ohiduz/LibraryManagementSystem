@@ -23,6 +23,8 @@ public class StudentLogin extends javax.swing.JFrame implements UserLogin{
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         btn_back = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         txt_id = new javax.swing.JTextField();
@@ -41,7 +43,7 @@ public class StudentLogin extends javax.swing.JFrame implements UserLogin{
         jLabel1.setFont(new java.awt.Font("Bodoni MT", 0, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 153, 102));
         jLabel1.setText("Student Login");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 20, 320, 85));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 10, 320, 85));
 
         btn_back.setBackground(new java.awt.Color(0, 102, 102));
         btn_back.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
@@ -59,7 +61,13 @@ public class StudentLogin extends javax.swing.JFrame implements UserLogin{
         });
         jPanel1.add(btn_back, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 6, 735, 131));
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/icns/BITS_Pilani-Logo.svg.png"))); // NOI18N
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, -1, -1));
+
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/icns/29302.png"))); // NOI18N
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 20, -1, -1));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 735, 160));
 
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -197,6 +205,8 @@ public class StudentLogin extends javax.swing.JFrame implements UserLogin{
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JTextField txt_id;

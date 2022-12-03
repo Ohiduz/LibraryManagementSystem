@@ -51,6 +51,8 @@ public class AdminHomepage extends javax.swing.JFrame {
         lbl_studs = new javax.swing.JLabel();
         jButton6 = new javax.swing.JButton();
         lbl_books = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         btn_logout = new javax.swing.JButton();
         btn_removeStudent = new javax.swing.JButton();
@@ -95,6 +97,12 @@ public class AdminHomepage extends javax.swing.JFrame {
         lbl_books.setForeground(new java.awt.Color(51, 51, 51));
         lbl_books.setText("2");
         jPanel1.add(lbl_books, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 70, 80, -1));
+
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/icns/BITS_Pilani-Logo.svg.png"))); // NOI18N
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
+
+        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/icns/29302.png"))); // NOI18N
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 10, -1, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 6, 735, 131));
 
@@ -265,6 +273,8 @@ public class AdminHomepage extends javax.swing.JFrame {
     private javax.swing.JButton btn_removeStudent;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton6;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel lbl_books;

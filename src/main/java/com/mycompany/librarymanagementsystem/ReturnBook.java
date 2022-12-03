@@ -29,36 +29,23 @@ public class ReturnBook extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        btn_back = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbl_btr = new javax.swing.JTable();
-        jLabel6 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         txt_rbid = new javax.swing.JTextField();
         btn_return = new javax.swing.JButton();
         btn_returnHome = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        btn_back = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        btn_back.setBackground(new java.awt.Color(0, 102, 102));
-        btn_back.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
-        btn_back.setForeground(new java.awt.Color(255, 255, 255));
-        btn_back.setText("<<Back");
-        btn_back.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btn_backMouseClicked(evt);
-            }
-        });
-        btn_back.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_backActionPerformed(evt);
-            }
-        });
-        jPanel1.add(btn_back, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         tbl_btr.setBackground(new java.awt.Color(240, 245, 245));
         tbl_btr.setBorder(new javax.swing.border.MatteBorder(null));
@@ -82,13 +69,9 @@ public class ReturnBook extends javax.swing.JFrame {
         tbl_btr.setRowHeight(24);
         jScrollPane1.setViewportView(tbl_btr);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 710, 300));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 710, 290));
 
-        jLabel6.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        jLabel6.setText("Books with you:");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 20, -1, -1));
-
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 730, 350));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, 730, 300));
 
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -134,9 +117,41 @@ public class ReturnBook extends javax.swing.JFrame {
                 btn_returnHomeActionPerformed(evt);
             }
         });
-        jPanel2.add(btn_returnHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 160, -1, -1));
+        jPanel2.add(btn_returnHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 120, -1, -1));
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 360, 710, 280));
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 460, 710, 180));
+
+        jPanel3.setBackground(new java.awt.Color(200, 200, 200));
+        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel1.setFont(new java.awt.Font("Bodoni MT", 0, 36)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 153, 102));
+        jLabel1.setText("Books with you:");
+        jPanel3.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 20, 320, 85));
+
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/icns/BITS_Pilani-Logo.svg.png"))); // NOI18N
+        jPanel3.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, -1, -1));
+
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/icns/29302.png"))); // NOI18N
+        jPanel3.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 20, -1, -1));
+
+        btn_back.setBackground(new java.awt.Color(0, 102, 102));
+        btn_back.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
+        btn_back.setForeground(new java.awt.Color(255, 255, 255));
+        btn_back.setText("<<Back");
+        btn_back.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_backMouseClicked(evt);
+            }
+        });
+        btn_back.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_backActionPerformed(evt);
+            }
+        });
+        jPanel3.add(btn_back, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, -1, -1));
+
+        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 6, 735, 150));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -211,10 +226,13 @@ public class ReturnBook extends javax.swing.JFrame {
     private javax.swing.JButton btn_back;
     private javax.swing.JButton btn_return;
     private javax.swing.JButton btn_returnHome;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tbl_btr;
     private javax.swing.JTextField txt_rbid;

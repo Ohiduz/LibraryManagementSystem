@@ -59,9 +59,13 @@ public class ReissueBook extends javax.swing.JFrame {
         txt_d = new javax.swing.JTextField();
         txt_m = new javax.swing.JTextField();
         txt_y = new javax.swing.JTextField();
-        btn_back = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         tbl_booksWS = new javax.swing.JTable();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        btn_back = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -143,23 +147,7 @@ public class ReissueBook extends javax.swing.JFrame {
         });
         jPanel2.add(txt_y, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 40, 110, -1));
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 360, 710, 280));
-
-        btn_back.setBackground(new java.awt.Color(0, 102, 102));
-        btn_back.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
-        btn_back.setForeground(new java.awt.Color(255, 255, 255));
-        btn_back.setText("<<Back");
-        btn_back.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btn_backMouseClicked(evt);
-            }
-        });
-        btn_back.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_backActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btn_back, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 480, 710, 200));
 
         tbl_booksWS.setBackground(new java.awt.Color(240, 245, 245));
         tbl_booksWS.setBorder(new javax.swing.border.MatteBorder(null));
@@ -183,7 +171,39 @@ public class ReissueBook extends javax.swing.JFrame {
         tbl_booksWS.setRowHeight(24);
         jScrollPane2.setViewportView(tbl_booksWS);
 
-        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 750, 310));
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, 740, 310));
+
+        jPanel3.setBackground(new java.awt.Color(200, 200, 200));
+        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel2.setFont(new java.awt.Font("Bodoni MT", 0, 36)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 153, 102));
+        jLabel2.setText("Request for reissue:");
+        jPanel3.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 20, 320, 85));
+
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/icns/BITS_Pilani-Logo.svg.png"))); // NOI18N
+        jPanel3.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, -1, -1));
+
+        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/icns/29302.png"))); // NOI18N
+        jPanel3.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 20, -1, -1));
+
+        btn_back.setBackground(new java.awt.Color(0, 102, 102));
+        btn_back.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
+        btn_back.setForeground(new java.awt.Color(255, 255, 255));
+        btn_back.setText("<<Back");
+        btn_back.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_backMouseClicked(evt);
+            }
+        });
+        btn_back.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_backActionPerformed(evt);
+            }
+        });
+        jPanel3.add(btn_back, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
+        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 740, 150));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -313,9 +333,13 @@ public class ReissueBook extends javax.swing.JFrame {
     private javax.swing.JButton btn_back;
     private javax.swing.JButton btn_request;
     private javax.swing.JButton btn_returnHome;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable tbl_booksWS;
     private javax.swing.JTextField txt_bookId;
