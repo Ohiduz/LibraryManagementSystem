@@ -43,6 +43,21 @@ public class DBConnection {
             e.printStackTrace();
         }
     }
+    public static Connection getConnection(){
+        String driver = "com.mysql.cj.jdbc.Driver";
+        String url = "jdbc:mysql://localhost:3306/lms";
+        String username = "root";
+        String password = "rootpass";
+        try{
+            Class.forName(driver);
+            Connection conn = DriverManager.getConnection(url,username,password);
+            return conn;
+        }
+        catch(Exception e){
+            System.out.println(e);
+        }
+        return null;
+    }
     public static void createStudentsTable(){
         try{
             Connection con;
@@ -110,20 +125,5 @@ public class DBConnection {
         catch(Exception e){
             System.out.println(e);
         }
-    }
-    public static Connection getConnection(){
-        String driver = "com.mysql.cj.jdbc.Driver";
-        String url = "jdbc:mysql://localhost:3306/lms";
-        String username = "root";
-        String password = "rootpass";
-        try{
-            Class.forName(driver);
-            Connection conn = DriverManager.getConnection(url,username,password);
-            return conn;
-        }
-        catch(Exception e){
-            System.out.println(e);
-        }
-        return null;
     }
 }
