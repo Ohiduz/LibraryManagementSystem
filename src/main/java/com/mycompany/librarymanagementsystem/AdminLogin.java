@@ -136,7 +136,7 @@ public class AdminLogin extends javax.swing.JFrame implements UserLogin{
         
         String id = txt_id.getText();
         String password = txt_password.getText();
-        Admin adm = new Admin(id, password);
+        User adm = new Admin(id, password);
         validateAndLogin(adm);
     }//GEN-LAST:event_btn_loginMouseClicked
 

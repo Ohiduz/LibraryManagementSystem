@@ -183,7 +183,7 @@ public class StudentLogin extends javax.swing.JFrame implements UserLogin{
         // TODO add your handling code here:
         String id = txt_id.getText();
         String password = txt_password.getText();
-        Student s = new Student(id, password);
+        User s = new Student(id, password);
         validateAndLogin(s);
     }//GEN-LAST:event_btn_loginMouseClicked
 
